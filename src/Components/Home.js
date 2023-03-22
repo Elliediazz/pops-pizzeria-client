@@ -1,10 +1,11 @@
 import React from "react";
 
 import '../Styling/Components.css'
-import customers from "../Assets/1.png";
-import pizza from "../Assets/meatloverfull.jpg";
-import pizzatwo from "../Assets/meatloverfull.jpg";
-import pizzathree from "../Assets/meatloverfull.jpg";
+import Carousel from "./Helpers/Carousel";
+import customers from "../Components/Assets/1.png";
+import pizza from "../Components/Assets/meatloverfull.jpg";
+import pizzatwo from "../Components/Assets/meatloverfull.jpg";
+import pizzathree from "../Components/Assets/meatloverfull.jpg";
 import Button from 'react-bootstrap/Button'
 
 
@@ -14,7 +15,7 @@ function Home() {
             <div className="landing-page">
                 <img className="customers" src={customers} alt="Customers"/>
                 <img className="pizza" src={pizza} alt="Pizza"/>
-                <div class="name">Pop's Pizzeria</div>
+                <div class="name">Pop's Pizza</div>
                 <div class="menu-link">
                     <div class="favorites">Find Your Favorites Here</div>
                     <div className="d-grid gap-2">
@@ -35,7 +36,8 @@ function Home() {
                 <div className="gallery-intro">
                     <h1>Our Gallery</h1>
                 </div>
-                <img className="gallery" src={pizzathree} alt="Pizza"/>
+                {/* <img className="gallery" src={pizzathree} alt="Pizza"/> */}
+                < Carousel/>
             </div>
             <div className="findus-page" id="findus">
                 <div className="findus-info">

@@ -1,6 +1,6 @@
 import React from "react"
 import '../Styling/Components.css'
-import logo from "../Assets/PopsLogo.png"
+import logo from "../Components/Assets/PopsLogo.png"
 
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
@@ -23,8 +23,8 @@ function NavBar() {
         </Navbar.Collapse>
       </Container>
         <div className='icons'>
-            <SocialIcon url="https://www.facebook.com/popspizzaRonkonkoma/" network="facebook" className='icon'/>	
-            <SocialIcon url="https://www.instagram.com/popspizzaronkonkoma/" network="instagram" className='icon'/>	
+            <SocialIcon url="https://www.facebook.com/popspizzaRonkonkoma/" target="_blank" network="facebook" className='icon'/>	
+            <SocialIcon url="https://www.instagram.com/popspizzaronkonkoma/" target="_blank" network="instagram" className='icon'/>	
         </div>
     </Navbar>
   );
