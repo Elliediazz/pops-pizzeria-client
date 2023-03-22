@@ -7,6 +7,7 @@ import pizza from "../Components/Assets/meatloverfull.jpg";
 import pizzatwo from "../Components/Assets/meatloverfull.jpg";
 import pizzathree from "../Components/Assets/meatloverfull.jpg";
 import Button from 'react-bootstrap/Button'
+import { CarouselData } from "./Helpers/CarouselData";
 
 
 function Home() {
@@ -37,7 +38,7 @@ function Home() {
                     <h1>Our Gallery</h1>
                 </div>
                 {/* <img className="gallery" src={pizzathree} alt="Pizza"/> */}
-                < Carousel/>
+                < Carousel slides={CarouselData} />
             </div>
             <div className="findus-page" id="findus">
                 <div className="findus-info">
