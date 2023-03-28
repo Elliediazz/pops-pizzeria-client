@@ -1,42 +1,45 @@
-/* NavBar  */
-.logo{
-    height: 50px;
-    width: 50px;
+/* NAVBAR  */
+.logo {
+    height: 80px;
+    width: 80px;
 }
-.icons{
+
+.icons {
     display: flex;
     align-items: center;
     justify-content:space-between;
-    height: 40px;
+    height: 50px;
     width: 125px;
 }
 
-/* Home */
-.landing-page{
+/* HOME */
+.landing-page {
     display: flex;
-    background-color: rgb(255, 255, 255);
-    margin-top: 75px;
-
+    margin-top: 90px;
 }
-.customers{
-    height: 90vh;
+
+.customers {
+    height: 100vh;
     width: 35vw;
     padding-right: 2%;
 }
-.pizza{
-    height: 90vh;
+
+.pizza {
+    height: 100vh;
     width: 65vw;
     padding-left: 2%;
-}
+} 
+
 .name {
     position: absolute;
-    top: 75px;
+    top: 90px;
     right: 16px;
     font-size: 500%;
     font-weight: 600;
     color:rgb(255, 255, 255)
-}
-.menu-link{
+} 
+
+.menu-link {
     display: flex;
     flex-direction: row;
     width: auto;
@@ -44,61 +47,143 @@
     position: absolute;
     bottom: 0px;
     left: 40%;
-    font-size: 175%;
+    font-size: 195%;
     font-weight: 600;
     padding: 10px;
     color: rgb(255, 255, 255);
 }
+
 .favorites {
     margin-right: 25px;
     font-size: 170%;
 }
-.d-grid{ 
+
+.d-grid { 
     margin-top: 15px;
 }
-.gallery-intro {
-    background-color: rgb(255, 255, 255);
-    border-top: 5px solid black;
-    height: 10vh;
-    width: 100vw;
-}
-.gallery-page{
-    height: 100vh;
-    width: 100vw;
-}
-.gallery{
-    height: 80vh;
-    width: 70vw;
-}
+
+/* ABOUT US */
 .about-page{
     display: flex;
     flex-direction: row;
+    height: 100%;
     
 }
 .about-info{
-    background-color: rgb(0, 0, 0);
     height: 90vh;
     width: 70vw;
-    margin: 10px;
+    background-color: rgb(0, 0, 0);
+    color: rgb(251, 251, 251);
+    padding: 30px;
+    margin-top: 10px;
+}
+.about-title{
+    font-size: 60px;
+    margin-bottom: 15px;
+}
+
+p {
+    font-size: 20px;
+    text-align: left; 
+    padding-left: 5px;
+    padding-right: 5px;
 }
 .about-image{
-    background-color: rgb(0, 0, 0);
     height: 90vh;
     width: 30vw;
-    margin: 10px;
+    margin-top: 10px;
 }
+
+/* GALLERY  */
+.gallery-page {
+    height: auto;
+    width: 100vw;
+}
+
+.gallery-intro {
+    background-color: rgb(255, 255, 255);
+    height: 10vh;
+    width: 100vw;
+}
+.gallery-title {
+    font-size: 75px;
+    margin: 25px;
+}
+
+.carousel {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image {
+    width: 80vw;
+    height: 90vh;
+    border-radius: 10px;
+    margin-top: 125px;
+    margin-bottom: 100px;
+}
+
+.right-arrow {
+    position: absolute;
+    top:50%;
+    right: 32px;
+    font-size: 3rem;
+    color: aliceblue;
+    z-index: 10;
+    cursor: pointer;
+    user-select: none;
+}
+
+.right-arrow {
+    position: absolute;
+    top:50%;
+    right: 32px;
+    font-size: 3rem;
+    color: black;
+    z-index: 10;
+    cursor: pointer;
+    user-select: none;
+}
+
+.left-arrow {
+    position: absolute;
+    top:50%;
+    left: 32px;
+    font-size: 3rem;
+    color: black;
+    z-index: 10;
+    cursor: pointer;
+    user-select: none;
+}
+
+.slide {
+    opacity: 0;
+    transition-duration: 1s ease;
+}
+
+.slide.active {
+    opacity: 1;
+    transition-duration: 1s;
+    transform: scale(1.08);
+}
+
+/* FIND US */
 .findus-page{
     display: flex;
     flex-direction: row;
+    height: 100%;
 }
 .findus-info{
-    background-color: rgb(0, 0, 0);
+    border: 5px solid rgba(12, 11, 11, 0.15);
     height: 90vh;
     width: 30vw;
     margin: 10px;
 }
 .findus-location{
-    background-color: rgb(0, 0, 0);
+    border: 5px solid rgba(12, 11, 11, 0.15);
     height: 90vh;
     width: 70vw;
     margin: 10px;
