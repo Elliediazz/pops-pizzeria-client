@@ -25,8 +25,6 @@
     padding-right: 2%;
 }
 
-/* fix spacing between images */
-
 .pizza {
     height: 100vh;
     width: 62%;
@@ -80,18 +78,20 @@
     display: flex;
     flex-direction: row;
     height: 100%;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 25px;
+    margin-top: 25px;
     
 }
 .about-info{
-    height: 90vh;
-    width: 70vw;
+    height: auto;
+    width: 60vw;
     color:  rgb(0, 0, 0);
-    padding: 30px;
-    margin-top: 10px;
+    padding: 50px;
 }
 .about-title{
     font-size: 60px;
-    margin-bottom: 15px;
 }
 
 p {
@@ -103,8 +103,6 @@ p {
 .about-image{
     height: 90vh;
     width: 30vw;
-    margin-top: 50px;
-    margin-bottom: 10px;
     vertical-align: middle;
 }
 
@@ -112,6 +110,8 @@ p {
 .gallery-page {
     height: auto;
     width: 100vw;
+    margin-bottom: 25px;
+    margin-top: 25px;
 }
 
 .gallery-intro {
@@ -121,7 +121,6 @@ p {
 }
 .gallery-title {
     font-size: 75px;
-    margin: 100px;
 }
 
 .carousel {
@@ -133,7 +132,7 @@ p {
 }
 
 .image {
-    width: 80vw;
+    width: 60vw;
     height: 90vh;
     border-radius: 10px;
     margin-top: 125px;
@@ -197,7 +196,6 @@ p {
     margin: 10px;
 }
 .findus-location{
-    border: 5px solid rgba(12, 11, 11, 0.15);
     height: 90vh;
     width: 70vw;
     margin: 10px;

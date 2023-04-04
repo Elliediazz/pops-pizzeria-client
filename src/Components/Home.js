@@ -62,7 +62,16 @@ function Home() {
 
                 </div>
                 <div className="findus-location">
-                
+                <iframe 
+                    title="Pop's Pizzeria Location"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3018.653783485661!2d-73.11125682445069!3d40.83556773004233!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e839fd7cd0c873%3A0x6b9f4473ca4679e4!2spoppops%20pizzeria!5e0!3m2!1sen!2sus!4v1680619530005!5m2!1sen!2sus"
+                    width="100%" 
+                    height="100%" 
+                    style={{border:0}}
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
                 </div>
             </div>
         </div>
