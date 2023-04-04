@@ -7,6 +7,7 @@ import pizza from "./Assets/meatloverfull.jpg";
 import aboutusimg from "./Assets/aboutusimg.jpg";
 import Button from 'react-bootstrap/Button';
 import { CarouselData } from "./Helpers/CarouselData";
+import { BsFillGeoAltFill } from "react-icons/bs";;
 
 
 function Home() {
@@ -22,6 +23,9 @@ function Home() {
                         <Button variant="outline-light" size="lg" >ORDER NOW</Button>
                     </div>
                 </div>
+            </div>
+            <div>
+                <h3 className="center" ><BsFillGeoAltFill/>1021 Portion Rd Lake Ronkonkoma, NY 11779</h3>
             </div>
 
             <div className="about-page">
@@ -58,12 +62,9 @@ function Home() {
 
                 </div>
                 <div className="findus-location">
-                    
-
+                
                 </div>
-
             </div>
-
         </div>
     )
 }
