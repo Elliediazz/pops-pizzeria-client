@@ -2,9 +2,9 @@ import React from "react";
 
 import '../Styling/Components.css';
 import Carousel from "./Helpers/Carousel";
-import customers from "./Assets/1.png";
-import pizza from "./Assets/meatloverfull.jpg";
-import aboutusimg from "./Assets/aboutusimg.jpg";
+import customers from "./Assets/marinarapasta.jpg";
+import storefront from "./Assets/storefront1.jpg";
+import aboutusimg from "./Assets/storefront4.jpg";
 import Button from 'react-bootstrap/Button';
 import { CarouselData } from "./Helpers/CarouselData";
 import { BsFillGeoAltFill } from "react-icons/bs";;
@@ -15,13 +15,12 @@ function Home() {
         <div className="home-main-div">
             <div className="landing-page">
                 <img className="customers" src={customers} alt="Customers"/>
-                <img className="pizza" src={pizza} alt="Pizza"/>
+                <img className="storefront" src={storefront} alt="storefront"/>
                 <div className="name">Pop's Pizza</div>
                 <div className="menu-link">
-                    <div className="favorites">Find Your Favorites Here</div>
-                    <div className="d-grid gap-2">
-                        <Button variant="outline-light" size="lg" >ORDER NOW</Button>
-                    </div>
+                    <h1 className="favorites">Find Your Favorites Here</h1>
+                    <Button variant="outline-light" size="lg" >ORDER NOW</Button>
+
                 </div>
             </div>
             <div>
@@ -54,16 +53,14 @@ function Home() {
             <div className="findus-page" id="findus">
                 <div className="findus-info">
                     <div className="info">
-                        <h3><BsFillGeoAltFill/>1021 Portion Rd Lake Ronkonkoma, NY 11779</h3>
+                        <h4><BsFillGeoAltFill/> 1021 Portion Rd </h4>
+                        <h4>Lake Ronkonkoma, NY 11779</h4>
                     </div>
                     <div className="info">
                         <h3>Hours:</h3>
                         <h6>Monday: 12:00am to 9:00 PM</h6>
-                        <h6>Tuesday: 11:30am to 9:00 PM</h6>
-                        <h6>Wednesday: 11:30am to 9:00 PM</h6>
-                        <h6>Thursday: 11:30am to 1:00 AM</h6>
-                        <h6>Friday: 11:30am to 1:00 AM</h6>
-                        <h6>Saturday: 11:30am to 1:00 PM</h6>
+                        <h6>Tuesday- Wednesday: 11:30am to 9:00 PM</h6>
+                        <h6>Thursday-Saturday: 11:30am to 1:00 AM</h6>
                         <h6>Sunday: 12:00am to 8:00 PM</h6>
                     </div>
                     <div className="info">
@@ -74,16 +71,19 @@ function Home() {
                 </div>
                 <div className="findus-location">
                 <iframe 
-                title="Pop's Pizzeria Location"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3018.6358457042556!2d-73.07031882373137!3d40.83596167137524!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e8472a9b5eaf69%3A0xbb4234f8cd17c135!2sPop&#39;s%20Pizza!5e0!3m2!1sen!2sus!4v1680625659673!5m2!1sen!2sus" 
-                width="100%" 
-                height="100%" 
-                style={{border:0}}
-                allowfullscreen="" 
-                loading="lazy" 
-                referrerpolicy="no-referrer-when-downgrade">
+                    title="Pop's Pizzeria Location"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3018.6358457042556!2d-73.07031882373137!3d40.83596167137524!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e8472a9b5eaf69%3A0xbb4234f8cd17c135!2sPop&#39;s%20Pizza!5e0!3m2!1sen!2sus!4v1680625659673!5m2!1sen!2sus" 
+                    width="100%" 
+                    height="100%" 
+                    style={{border:0}}
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
                 </iframe>
                 </div>
+            </div>
+            <div className="footer">
+
             </div>
         </div>
     )

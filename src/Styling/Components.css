@@ -16,8 +16,9 @@
 /* HOME */
 .landing-page {
     display: flex;
+    height: auto;
+    width: auto;
     margin-top: 50px;
-    /* background-color: brown; */
 }
 
 .customers {
@@ -26,7 +27,7 @@
     padding-right: 2%;
 }
 
-.pizza {
+.storefront {
     height: 100vh;
     width: 62%;
     padding-left: 2%;
@@ -44,6 +45,7 @@
 .menu-link {
     display: flex;
     flex-direction: row;
+    align-items: center;
     width: auto;
     height: auto;
     position: absolute;
@@ -56,17 +58,13 @@
 }
 
 .favorites {
-    margin-right: 25px;
+    margin: 0px 25px;
     font-size: 170%;
-}
-
-.d-grid { 
-    margin-top: 15px;
 }
 
 .center{
     height: 80px;
-    width: 100vw;
+    width: auto;
     background-color: brown;
     color: white;
     text-align: center;
@@ -78,7 +76,8 @@
 .about-page{
     display: flex;
     flex-direction: row;
-    height: 100%;
+    height: auto;
+    width: auto;
     align-items: center;
     justify-content: center;
     margin-bottom: 25px;
@@ -110,7 +109,7 @@ p {
 /* Reviews  */
 /* .reviews{
     height: 70vh;
-    width: 100vw;
+    width: auto;
     border: 5px solid rgba(12, 11, 11, 0.15);
     background-color: brown;
 } */
@@ -120,7 +119,7 @@ p {
 /* GALLERY  */
 .gallery-page {
     height: auto;
-    width: 100vw;
+    width: auto;
     background-color: brown;
 }
 .carousel {
@@ -174,24 +173,30 @@ p {
 .findus-page{
     display: flex;
     flex-direction: row;
-    height: 100%;
+    height: 100vh;
     align-items: center;
     justify-content:space-around;
-    background-color: rgb(26, 26, 26);
+    background-color: rgba(26, 26, 26, 0.959);
     color: whitesmoke;
+    padding: 25px;
 }
 .findus-info{
-    height: 60vh;
-    width: auto
+    height: auto;
+    width: auto; 
+    align-items: center;
 }
 .info{
-    margin: 25px 0px 50px 50px;
+    margin-bottom: 50px;
     text-align: left;
 
 }
 .findus-location{
     height: 75vh;
     width: 50vw;
-    margin: 25px 25px 25px 0px;
+}
+.footer{
+    background-color: rgba(26, 26, 26, 0.959);
+    color: whitesmoke;
+    height: 50vh;
 }
 
