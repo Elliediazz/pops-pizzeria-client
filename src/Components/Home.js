@@ -14,7 +14,8 @@ function Home() {
     return(
         <div className="home-main-div">
             <div className="landing-page">
-                <img className="eats" src={eats} alt="Customers"/>
+                <div className="eats"></div>
+                {/* <img className="eats" src={eats} alt="Customers"/> */}
                 <img className="storefront" src={storefront} alt="storefront"/>
                 <div className="name">Pop's Pizza</div>
                 <div className="menu-link">
@@ -24,7 +25,7 @@ function Home() {
                 </div>
             </div>
             <div>
-                <h3 className="center" ><BsFillGeoAltFill/>1021 Portion Rd Lake Ronkonkoma, NY 11779</h3>
+                <h3 className="address" ><BsFillGeoAltFill/>1021 Portion Rd Lake Ronkonkoma, NY 11779</h3>
             </div>
 
             <div className="about-page">
