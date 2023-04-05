@@ -2,7 +2,7 @@ import React from "react";
 
 import '../Styling/Components.css';
 import Carousel from "./Helpers/Carousel";
-import customers from "./Assets/marinarapasta.jpg";
+import eats from "./Assets/marinarapasta.jpg";
 import storefront from "./Assets/storefront1.jpg";
 import aboutusimg from "./Assets/storefront4.jpg";
 import Button from 'react-bootstrap/Button';
@@ -14,7 +14,7 @@ function Home() {
     return(
         <div className="home-main-div">
             <div className="landing-page">
-                <img className="customers" src={customers} alt="Customers"/>
+                <img className="eats" src={eats} alt="Customers"/>
                 <img className="storefront" src={storefront} alt="storefront"/>
                 <div className="name">Pop's Pizza</div>
                 <div className="menu-link">
