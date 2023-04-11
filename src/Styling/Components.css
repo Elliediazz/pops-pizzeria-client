@@ -19,61 +19,42 @@
     height: auto;
     width: auto;
     margin-top: 50px;
-    /* background-color: brown; */
 }
 
 .eats {
     height: 100vh;
-    width: 40%;
+    width: 100vw;
     padding-right: 2%;
-    background-image: url(../Components/Assets/marinarapasta.jpg);
+    background-image: url(../Components/Assets/margarita2.jpg);
     background-repeat: no-repeat;
     background-size: cover;
-    animation: slide 30s infinite;
+    animation: slide 10s infinite;
 }
-@keyframes slide {
+/* @keyframes slide {
     0%{
-        background-image: url(../Components/Assets/marinarapasta.jpg);
+        background-image: url(../Components/Assets/margarita2.jpg);
     }
-    10%{
-        background-image: url(../Components/Assets/CBRpizza.jpg);
-    }
-    20%{
-        background-image: url(../Components/Assets/cinabites.jpg);
-    }
-    30%{
-        background-image: url(../Components/Assets/pastasalad.jpg);
-    }
-    40%{
-        background-image: url(../Components/Assets/creamytomato.jpg);
+    25%{
+        background-image: url(../Components/Assets/pestopasta.jpg);
     }
     50%{
-        background-image: url(../Components/Assets/macnchzpie.jpg);
+        background-image: url(../Components/Assets/vodkapasta.jpg);
     }
-    60%{
-        background-image: url(../Components/Assets/alfredopizza.jpg);
-    }
-    70%{
-        background-image: url(../Components/Assets/tacopizza.jpg);
-    }
-    80%{
-        background-image: url(../Components/Assets/calzone.jpg);
-    }
-    90%{
-        background-image: url(../Components/Assets/supremepizza.jpg);
-    }
-}
+    100%{
+        background-image: url(../Components/Assets/margarita2.jpg);
+    }  
+} */
 
-.storefront {
+/* .storefront {
     height:100vh;
     width: 60%;
     padding-left: 2%;
-} 
+}  */
 
 .name {
     position: absolute;
-    top: 90px;
-    right: 20px;
+    top: 100px;
+    right: 0px;
     font-style: oblique 10deg;
     font-size: 500%;
     font-weight: 600;
@@ -88,7 +69,7 @@
     height: auto;
     position: absolute;
     bottom: 0px;
-    left: 40%;
+    left: 0%;
     font-size: 195%;
     font-weight: 600;
     padding: 10px;
@@ -171,7 +152,7 @@ p {
 
 .image {
     width: 60vw;
-    height: 80vh;
+    height: 90vh;
     border-radius: 10px;
 }
 

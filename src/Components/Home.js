@@ -15,9 +15,10 @@ function Home() {
         <div className="home-main-div">
             <div className="landing-page">
                 <div className="eats"></div>
-                {/* <img className="eats" src={eats} alt="Customers"/> */}
-                <img className="storefront" src={storefront} alt="storefront"/>
-                <div className="name">Pop's Pizza</div>
+                {/* <img className="storefront" src={storefront} alt="storefront"/> */}
+                <div className="name">
+                <h1 className="favorites">Pops Pizza</h1>
+                </div>
                 <div className="menu-link">
                     <h1 className="favorites">Find Your Favorites Here</h1>
                     <Button variant="outline-light" size="lg" >ORDER NOW</Button>
@@ -59,10 +60,10 @@ function Home() {
                     </div>
                     <div className="info">
                         <h3>Hours:</h3>
-                        <h6>Monday: 12:00am to 9:00 PM</h6>
-                        <h6>Tuesday- Wednesday: 11:30am to 9:00 PM</h6>
-                        <h6>Thursday-Saturday: 11:30am to 1:00 AM</h6>
-                        <h6>Sunday: 12:00am to 8:00 PM</h6>
+                        <h6>Monday: 12:00am - 9:00 PM</h6>
+                        <h6>Tuesday - Wednesday: 11:30am - 9:00 PM</h6>
+                        <h6>Thursday - Saturday: 11:30am - 1:00 AM</h6>
+                        <h6>Sunday: 12:00am - 8:00 PM</h6>
                     </div>
                     <div className="info">
                         <h3>Contact Us:</h3>
