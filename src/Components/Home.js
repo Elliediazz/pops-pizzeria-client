@@ -2,8 +2,6 @@ import React from "react";
 
 import '../Styling/Components.css';
 import Carousel from "./Helpers/Carousel";
-import eats from "./Assets/marinarapasta.jpg";
-import storefront from "./Assets/storefront1.jpg";
 import aboutusimg from "./Assets/storefront4.jpg";
 import Button from 'react-bootstrap/Button';
 import { CarouselData } from "./Helpers/CarouselData";
@@ -14,15 +12,15 @@ function Home() {
     return(
         <div className="home-main-div">
             <div className="landing-page">
-                <div className="eats"></div>
-                {/* <img className="storefront" src={storefront} alt="storefront"/> */}
+                <div className="eats-images">
+                    <div className="eats"></div>
+                </div>
                 <div className="name">
-                <h1 className="favorites">Pops Pizza</h1>
+                    <h1 className="favorites">Pops Pizza</h1>
                 </div>
                 <div className="menu-link">
                     <h1 className="favorites">Find Your Favorites Here</h1>
                     <Button variant="outline-light" size="lg" >ORDER NOW</Button>
-
                 </div>
             </div>
             <div>

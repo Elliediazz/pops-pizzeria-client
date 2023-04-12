@@ -25,38 +25,42 @@
     height: 100vh;
     width: 100vw;
     padding-right: 2%;
+    background-color: rgba(0, 0, 0, 0.5);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.eats-images {
+    height: 100vh;
+    width: 100vw;
+    padding-right: 2%;
     background-image: url(../Components/Assets/margarita2.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     animation: slide 10s infinite;
 }
-/* @keyframes slide {
+@keyframes slide {
     0%{
-        background-image: url(../Components/Assets/margarita2.jpg);
+        background-image: url(../Components/Assets/pepperonipie.jpg);
     }
-    25%{
-        background-image: url(../Components/Assets/pestopasta.jpg);
+    40%{
+        background-image: url(../Components/Assets/veggiepie.jpg);
     }
-    50%{
-        background-image: url(../Components/Assets/vodkapasta.jpg);
+    60%{
+        background-image: url(../Components/Assets/CBRpizza.jpg);
     }
-    100%{
-        background-image: url(../Components/Assets/margarita2.jpg);
+    80%{
+        background-image: url(../Components/Assets/alfredopie.jpg);
     }  
-} */
-
-/* .storefront {
-    height:100vh;
-    width: 60%;
-    padding-left: 2%;
-}  */
+}
 
 .name {
     position: absolute;
-    top: 100px;
-    right: 0px;
+    top:40%;
+    left:10%;
+    text-transform: uppercase;
+    text-align: center;
     font-style: oblique 10deg;
-    font-size: 500%;
+    font-size: 600%;
     font-weight: 600;
     color:rgb(255, 255, 255)
 } 
@@ -68,9 +72,11 @@
     width: auto;
     height: auto;
     position: absolute;
-    bottom: 0px;
-    left: 0%;
-    font-size: 195%;
+    top:65%;
+    left:10%;
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 200%;
     font-weight: 600;
     padding: 10px;
     color: rgb(255, 255, 255);
