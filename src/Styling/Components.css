@@ -23,23 +23,21 @@
 
 .eats {
     height: 100vh;
-    width: 100vw;
-    padding-right: 2%;
+    width: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     background-repeat: no-repeat;
     background-size: cover;
 }
 .eats-images {
     height: 100vh;
-    width: 100vw;
-    padding-right: 2%;
+    width: 100%;
     background-image: url(../Components/Assets/margarita2.jpg);
     background-repeat: no-repeat;
     background-size: cover;
-    animation: slide 10s infinite;
+    animation: slide 25s infinite;
 }
 @keyframes slide {
-    0%{
+    20%{
         background-image: url(../Components/Assets/pepperonipie.jpg);
     }
     40%{

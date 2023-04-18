@@ -2,7 +2,7 @@ import React from "react";
 
 import '../Styling/Components.css';
 import Carousel from "./Helpers/Carousel";
-import aboutusimg from "./Assets/storefront4.jpg";
+import aboutusimg from "./Assets/aboutusimg.jpg";
 import Button from 'react-bootstrap/Button';
 import { CarouselData } from "./Helpers/CarouselData";
 import { BsFillGeoAltFill } from "react-icons/bs";;
