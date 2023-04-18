@@ -4,7 +4,7 @@ import { menu } from './Helpers/MenuData'
 const Menu = () => {
 
   return (
-    <div className="specialsCatering-menu">
+    <div className="menu">
       {menu.map((item, index) => (
         <div className="menu-card" key={index}>
           <img src={item.img} alt={item.name} />
