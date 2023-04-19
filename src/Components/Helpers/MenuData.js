@@ -119,9 +119,9 @@ export const menu = [
         category: "Pizza"
     },
     {
-        name: "Hawaiian Pie (Ham, Pineapple)",
+        name: "Hawaiian Pie",
         price: 22.85,
-        description: "",
+        description: "Pizza with Ham and Pineapple",
         img: "",
         category: "Pizza"
     },
@@ -140,15 +140,16 @@ export const menu = [
         category: "Pizza"
     },
     {
-        name: "Meat Lovers Pie (Pepperoni, Sausage, Meatball)",
+        name: "Meat Lovers Pie",
         price: 22.85,
+        description:"Pizza with Pepperoni, Sausage, and Meatball",
         img: "",
         category: "Pizza"
     },
     {
-        name: 'Veggie Pie (Mushroom, Onion, Peppers)',
+        name: 'Veggie Pie',
         price: 22.85,
-        description: '',
+        description: 'Pizza with Mushroom, Onion, and Peppers',
         img: '',
         category: 'Pizza'
     },
@@ -202,9 +203,9 @@ export const menu = [
         category: 'Rolls & Calzones'
     },
     {
-        name: 'Sausage Roll (Peppers, Onions)',
+        name: 'Sausage Roll',
         price: 9.65,
-        description: '',
+        description: 'With Peppers and Onions',
         img: '',
         category: 'Rolls & Calzones'
     },
@@ -217,7 +218,7 @@ export const menu = [
     },
     {
         name: 'Pepperoni Pinwheel',
-        price: 2.5,
+        price: 2.50,
         description: '',
         img: '',
         category: 'Rolls & Calzones'
@@ -259,7 +260,7 @@ export const menu = [
     },
     {
         name: 'Linguine or Ziti with Shrimp',
-        price: 16.5,
+        price: 16.50,
         description: '',
         img: '',
         category: 'Pasta'
@@ -405,163 +406,163 @@ export const menu = [
         category: "Heroes"
     },
     {
-        name: "Chicken Parmigiana",
+        name: 'Chicken Parmigiana',
         price: 16.65,
-        description: "",
-        img: "",
-        category: "Dinner"
-    },
-    {
-        name: "Chicken & Eggplant Parmigiana",
+        description: 'Breaded chicken cutlet, tomato sauce, mozzarella cheese, served with spaghetti',
+        img:"",
+        category: 'Dinner'
+      },
+      {
+        name: 'Chicken & Eggplant Parmigiana',
         price: 17.65,
-        description: "",
-        img: "",
-        category: "Dinner"
-    },
-    {
+        description: 'Breaded chicken cutlet, breaded eggplant, tomato sauce, mozzarella cheese, served with spaghetti',
+        img:"",
+        category: 'Dinner'
+      },
+      {
         name: 'Veal Parmigiana',
-        price: '17.65 USD',
-        description: '',
-        img: '',
+        price: 17.65,
+        description: 'Breaded veal cutlet, tomato sauce, mozzarella cheese, served with spaghetti',
+        img:"",
         category: 'Dinner'
-    },
-    {
+      },
+      {
         name: 'Eggplant Parmigiana',
-        price: '16.65 USD',
-        description: '',
-        img: '',
+        price: 16.65,
+        description: 'Breaded eggplant, tomato sauce, mozzarella cheese, served with spaghetti',
+        img:"",
         category: 'Dinner'
-    },
-    {
+      },
+      {
         name: 'Chicken Francese',
-        price: '18.60 USD',
-        description: '',
-        img: '',
+        price: 18.60,
+        description: 'Egg-battered chicken breast, white wine, lemon, served with spaghetti',
+        img:"",
         category: 'Dinner'
-    },
-    {
+      },
+      {
         name: 'Chicken Marsala',
-        price: '18.60 USD',
-        description: '',
-        img: '',
+        price: 18.60,
+        description: 'Sauteed chicken breast, Marsala wine, mushrooms, served with spaghetti',
+        img:"",
         category: 'Dinner'
-    },
-    {
+      },
+      {
         name: 'Veal Francese',
-        price: '19.65 USD',
-        description: '',
-        img: '',
+        price: 19.65,
+        description: 'Egg-battered veal cutlet, white wine, lemon, served with spaghetti',
+        img:"",
         category: 'Dinner'
-    },
-    {
+      },
+      {
         name: 'Veal Marsala',
-        price: '19.65 USD',
-        description: '',
-        img: '',
+        price: 19.65,
+        description: 'Sauteed veal cutlet, Marsala wine, mushrooms, served with spaghetti',
+        img:"",
         category: 'Dinner'
-    },
-    {
+      },
+      {
         name: 'Shrimp Francese',
-        price: '19.65 USD',
-        description: '',
-        img: '',
+        price: 19.65,
+        description: 'Egg-battered shrimp, white wine, lemon, served with spaghetti',
+        img:"",
         category: 'Dinner'
-    },
-    {
+      },
+      {
         name: 'Shrimp Marsala',
-        price: '19.65 USD',
-        description: '',
-        img: '',
+        price: 19.65,
+        description: 'Sauteed shrimp, Marsala wine, mushrooms, served with spaghetti',
+        img:"",
         category: 'Dinner'
-    },
-    {
+      },
+      {
         name: 'Eggplant Rollatini',
-        price: '17.65 USD',
-        description: '',
-        img: '',
+        price: 17.65,
+        description: 'Eggplant rolled with ricotta cheese, topped with tomato sauce and melted mozzarella cheese',
+        img:"",
         category: 'Dinner'
-    },
-    {
+      },
+      {
         name: 'Sausage & Peppers with Onions',
-        price: '17.65 USD',
-        description: '',
-        img: '',
+        price: 17.65,
+        description: 'Sauteed sausage, green peppers, onions, served with spaghetti',
+        img:"",
         category: 'Dinner'
-    },
-    {
+      },
+      {
         name: 'Shrimp Parmigiana',
-        price: '17.65 USD',
-        description: '',
-        img: '',
+        price: 17.65,
+        description: 'Breaded shrimp, tomato sauce, mozzarella cheese, served with spaghetti',
+        img:"",
         category: 'Dinner'
-    },
-    {
+      },
+      {
         name: 'Shrimp Fra Diavolo',
-        price: '19.65 USD',
-        description: '',
-        img: '',
+        price: 19.65,
+        description: 'Sauteed shrimp in spicy marinara sauce, served with spaghetti',
+        img:"",
         category: 'Dinner'
-    },
-    {
-        name: 'Shrimp Scampi',
-        price: '19.65 USD',
-        description: '',
-        img: '',
-        category: 'Dinner'
-    },
-    {
-        name: 'Minestrone (Pint)',
-        price: '6.00 USD',
-        description: '',
-        img: '',
-        category: 'Soups & Salads'
-    },
-    {
-        name: 'Pasta Fagiolli',
-        price: '6.00 USD',
-        description: '',
-        img: '',
-        category: 'Soups & Salads'
-    },
-    {
-        name: 'Lentil',
-        price: '6.00 USD',
-        description: '',
-        img: '',
-        category: 'Soups & Salads'
-    },
-    {
-        name: 'Greek Salad',
-        price: '7.00 USD',
-        description: '',
-        img: '',
-        category: 'Soups & Salads'
-    },
-    {
-        name: 'Caesar Salad',
-        price: '7.00 USD',
-        description: '',
-        img: '',
-        category: 'Soups & Salads'
-    },
-    {
-        name: 'Antipasto',
-        price: '9.00 USD',
-        description: '',
-        img: '',
-        category: 'Soups & Salads'
-    },
+      },
+      {
+        name: "Shrimp Scampi",
+        price: 19.65,
+        description: "Shrimp sautéed in garlic, butter and lemon sauce served over linguine.",
+        img:"",
+        category: "Dinner"
+      },
+      {
+        name: "Minestrone (Pint)",
+        price: 6.00,
+        description: "A hearty Italian vegetable soup.",
+        img:"",
+        category: "Soups & Salads"
+      },
+      {
+        name: "Pasta Fagiolli",
+        price: 6.00,
+        description: "Pasta and beans in a tomato-based soup.",
+        img:"",
+        category: "Soups & Salads"
+      },
+      {
+        name: "Lentil",
+        price: 6.00,
+        description: "A traditional lentil soup.",
+        img:"",
+        category: "Soups & Salads"
+      },
+      {
+        name: "Greek Salad",
+        price: 7.00,
+        description: "Fresh mixed greens topped with tomatoes, cucumbers, red onions, feta cheese, and Kalamata olives.",
+        img:"",
+        category: "Soups & Salads"
+      },
+      {
+        name: "Caesar Salad",
+        price: 7.00,
+        description: "Crisp romaine lettuce with croutons, shaved Parmesan cheese and Caesar dressing.",
+        img:"",
+        category: "Soups & Salads"
+      },
+      {
+        name: "Antipasto",
+        price: 9.00,
+        description: "An assortment of Italian meats, cheeses, olives and marinated vegetables.",
+        img:"",
+        category: "Soups & Salads"
+      },
     {
         name: "Grilled Chicken Salad",
         price: 10.00,
-        description: "",
+        description: "Fresh mixed greens topped with grilled chicken, tomatoes, onions, cucumbers, and your choice of dressing.",
         img: "",
         category: "Soups & Salads"
     },
     {
         name: "Chicken Cutlet Salad",
         price: 10.00,
-        description: "",
+        description: "Crispy chicken cutlets served on a bed of mixed greens, with tomatoes, onions, cucumbers, and your choice of dressing.",
         img: "",
         category: "Soups & Salads"
     },
@@ -616,91 +617,91 @@ export const menu = [
     },
     {
         name: "20oz Soda",
-        price: "$2.25",
+        price: 2.25,
         description: "",
         img: "",
         category: "Cold Beverages"
     },
     {
         name: "Hanks Soda",
-        price: "$2.25",
+        price: 2.25,
         description: "",
         img: "",
         category: "Cold Beverages"
     },
     {
         name: "Snapple",
-        price: "$2.00",
+        price: 2.00,
         description: "",
         img: "",
         category: "Cold Beverages"
     },
     {
         name: "Can Soda",
-        price: "$1.50",
+        price: 1.50,
         description: "",
         img: "",
         category: "Cold Beverages"
     },
     {
-        name: "2 Liter Bottle (Coke Products)",
-        price: "$4.00",
-        description: "",
+        name: "2 Liter Bottle",
+        price: 4.00,
+        description: "Coke Products",
         img: "",
         category: "Cold Beverages"
     },
     {
         name: "Bottled Water",
-        price: "$1.50",
+        price: 1.50,
         description: "",
         img: "",
         category: "Cold Beverages"
     },
     {
         name: "Vanilla Brownie Pint",
-        price: "$5.95",
+        price: 5.95,
         description: "",
         img: "",
         category: "Ice Cream"
     },
     {
         name: "Rainbow Cookie Pint",
-        price: "$5.95",
+        price: 5.95,
         description: "",
         img: "",
         category: "Ice Cream"
     },
     {
         name: "Raspberry Sorbet Pint",
-        price: "$5.95",
+        price: 5.95,
         description: "",
         img: "",
         category: "Ice Cream"
     },
     {
         name: "Rocky Road Pint",
-        price: "$5.95",
+        price: 5.95,
         description: "",
         img: "",
         category: "Ice Cream"
     },
     {
         name: "S'mores Pint",
-        price: "$5.95",
+        price: 5.95,
         description: "",
         img: "",
         category: "Ice Cream"
     },
     {
         name: "Pistachio Pint",
-        price: "$5.95",
+        price: 5.95,
         description: "",
         img: "",
         category: "Ice Cream"
     },
     {
         name: "Nutella Banana",
-        price: "$5.95",
+        price: 5.95,
         description: "",
         img: "",
         category: "Ice Cream"

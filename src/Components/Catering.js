@@ -1,11 +1,11 @@
 import React from "react";
-import { menu } from './Helpers/MenuData'
+import { cateringMenu } from './Helpers/CateringData'
 
-const Menu = () => {
+const CateringMenu = () => {
 
   return (
-    <div className="menu">
-      {menu.map((item, index) => (
+    <div className="catering-menu">
+      {cateringMenu.map((item, index) => (
         <div className="menu-card" key={index}>
           <img src={item.img} alt={item.name} />
           <div className="menu-card-details">
@@ -19,4 +19,4 @@ const Menu = () => {
   );
 };
 
-export default Menu;
+export default CateringMenu;

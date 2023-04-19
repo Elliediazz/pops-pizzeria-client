@@ -18,6 +18,7 @@ function NavBar() {
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/menu">Menu</Nav.Link>
             <Nav.Link href="/specials">Specials</Nav.Link>
+            <Nav.Link href="/catering">Catering</Nav.Link>
             <Nav.Link href="/#findus">Find Us</Nav.Link>
           </Nav>
         </Navbar.Collapse>

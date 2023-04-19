@@ -5,6 +5,7 @@ import NavBar from './Components/Navbar';
 import Home from './Components/Home';
 import Menu from './Components/Menu';
 import SpecialsMenu from './Components/Specials';
+import CateringMenu from './Components//Catering';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route exact path='/' element={<Home />}/>
         <Route path='/menu' element={<Menu />}/>
         <Route path='/specials' element={<SpecialsMenu />}/>
+        <Route path='/catering' element={<CateringMenu />}/>
         </Routes>
       </Router>
     </div>
