@@ -13,21 +13,20 @@ function Home() {
     return(
         <div className="home-main-div">
             <div className="landing-page">
-                <div className="eats-images">
-                    <div className="eats"></div>
+                <div className="eats">
+                    <div className="eats-images"></div>
                 </div>
-                <div className="menu-link">
+                {/* <div className="menu-link">
                     <h1 className="favorites">Find Your Favorites Here</h1>
-                    <Button variant="outline-light" size="lg" >ORDER NOW</Button>
-                </div>
+                    <Button variant="outline-light" size="lg" href="/menu" >ORDER NOW</Button>
+                </div> */}
             </div>
-            <div>
-                <h3 className="address" ><BsFillGeoAltFill/>1021 Portion Rd Lake Ronkonkoma, NY 11779</h3>
-            </div>
-
+            {/* <div className="address" >
+                <h3><BsFillGeoAltFill/>1021 Portion Rd Lake Ronkonkoma, NY 11779</h3>
+            </div> */}
             <div className="about-page">
                 <div className="about-info">
-                    <h1 className="about-title">OUR STORY</h1>
+                    <h1 className="about-title">Traditional Recipes Since 2000</h1>
                     <p>
                         Pop's Pizza was named after its founder, my grandfather whom we called Pop, who had always had a love for making pizzas. Pop had been working in pizzerias since he was a teenager and had always dreamed of owning his own place one day.</p>
                     <p>As he grew older, Pop saved up enough money to finally make his dream a reality. He found a small storefront in a bustling neighborhood and opened Pop's Pizza. At first, business was slow, but Pop didn't let that deter him. He spent long hours in the kitchen, perfecting his recipes and experimenting with new and innovative toppings. His hard work paid off, and before long, Pops Pizza had a loyal following of customers who couldn't get enough of Pop's delicious pies.
@@ -45,6 +44,12 @@ function Home() {
                 reviews
             </div> */}
             <div className="gallery-page">
+                <div className="gallery-header">
+                    <h1>Our Menu</h1>
+                    <p>Our pizzeria menu offers a wide selection of delicious pizzas, made with the freshest and finest ingredients. Whether you're a fan of classic Margherita or adventurous toppings like eggplant and anchovies, we have something for everyone.</p>
+                    <br></br>
+                    <p>Our menu also offers hero sandwiches, including chicken, meatball, and sausage parmigiana, and dinner entrees like Chicken Francese, Veal Marsala, and Shrimp Francese served with linguine, ziti or a salad.</p>
+                </div>
                 < Carousel slides={CarouselData} />
             </div>
 

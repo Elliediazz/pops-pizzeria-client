@@ -1,38 +1,44 @@
 import React, { useState } from 'react'
 import { CarouselData } from './CarouselData'
-import { VscChevronRight, VscChevronLeft  } from "react-icons/vsc";
+import { VscChevronRight, VscChevronLeft } from "react-icons/vsc";
 
 function Carousel({ slides }) {
 
-    const [currImg, setCurrImg] = useState(0) 
-    const length = slides.length
+  const [currImg, setCurrImg] = useState(0);
+  const length = slides.length;
 
-    const nextSlide = () => {
-        setCurrImg(currImg === length-1 ? 0 : currImg + 1)
-    }
+  const nextSlide = () => {
+    const newCurrImg = currImg + 3 >= length ? 0 : currImg + 3;
+    setCurrImg(newCurrImg);
+  }
 
-    const prevSlide = () => {
-        setCurrImg(currImg === 0 ? length-1  : currImg - 1)
-    }
+  const prevSlide = () => {
+    const newCurrImg = currImg - 3 < 0 ? length - (length % 4) : currImg - 3;
+    setCurrImg(newCurrImg);
+  }
 
-    if(!Array.isArray(slides) || slides.length <= 0) {
-        return null
-    }
+  if (!Array.isArray(slides) || slides.length <= 0) {
+    return null
+  }
 
-    return (
-        <div className='carousel'>
-            <VscChevronLeft className="left-arrow" onClick={prevSlide}/>
-            <VscChevronRight className="right-arrow" onClick={nextSlide}/>
-            {CarouselData.map((slide, index) => {
-                return (
-                    <div className={index === currImg ? 'slide active': 'slide'} key={index}>
-                        {index === currImg && (<img src={slide.img} alt="Pizzia Images" className='image'/>)}
-                        
-                    </div>
-                )
-            })}
-        </div>
-    )
+  return (
+    <div className='carousel-page'>
+    <div className='carousel'>
+      <VscChevronLeft className="left-arrow" onClick={prevSlide} />
+      <VscChevronRight className="right-arrow" onClick={nextSlide} />
+      <div className='slides-container'>
+        {slides.slice(currImg, currImg + 3).map((slide, index) => (
+          <div className={index === 0 ? 'slide active' : 'slide'} key={index}>
+            <img src={slide.img} alt="Pizza Images" className='image' />
+          </div>
+        ))}
+      </div>
+    </div>
+    </div>
+  )
 }
 
-export default Carousel
+export default function App() {
+  return <Carousel slides={CarouselData} />;
+}
+

@@ -1,66 +1,67 @@
 /* NAVBAR  */
-
+.dark{
+    background-color: rgba(218, 208, 201, 0.9);
+}
+#responsive-navbar-nav{
+    justify-content: center;
+}
 .logo {
     height: 75px;
-    width: 75px;
+    width: 95px;
 }
 
 .icons {
     display: flex;
-    align-items: center;
-    justify-content:space-between;
     height: auto;
     width: auto;
 }
 .navbar-brand {
     font-size: 1.35rem;
-    color: black;
 }
 .navbar-nav {
     display: flex;
     align-items: center;
     height: 100%;
-    color: black;
 }
 
 /* HOME */
 .landing-page {
     display: flex;
-    height: 100vh;
+    height: 90vh;
     width: auto;
-    margin-top: 50px;
-}
+    /* margin-top: 125px; */
+} 
 
 .eats {
-    height: 100vh;
+    height: 100%;
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.4);
-    background-repeat: no-repeat;
-    background-size: cover;
 }
+
 .eats-images {
-    height: 100vh;
+    height: 100%;
     width: 100%;
-    object-fit: cover;
     background-image: url(../Components/Assets/Margheader.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     animation: slide 20s infinite;
-}
-@keyframes slide {
-    20%{
-        background-image: url(../Components/Assets/Tacopieheader.jpg);
+    overflow: hidden;
+    transition: background-image 5s ease-in-out;
+  } 
+  
+  @keyframes slide {
+    20% {
+      background-image: url(../Components/Assets/Tacopieheader.jpg);
     }
-    40%{
-        background-image: url(../Components/Assets/Veggieheader.jpg);
+    40% {
+      background-image: url(../Components/Assets/Veggieheader.jpg);
     }
-    60%{
-        background-image: url(../Components/Assets/CBRheader.jpg);
+    60% {
+      background-image: url(../Components/Assets/CBRheader.jpg);
     }
-    80%{
-        background-image: url(../Components/Assets/Chzheader.jpg);
+    80% {
+      background-image: url(../Components/Assets/Chzheader.jpg);
     }
-}
+  }
 
 .menu-link {
     display: flex;
@@ -69,13 +70,26 @@
     width: auto;
     height: auto;
     position: absolute;
-    top:90%;
+    top:85%;
     text-transform: uppercase;
     text-align: center;
     font-family: Helvetica;
     font-size: 150%;
     font-weight: 600;
     color: rgb(255, 255, 255);
+    animation: slide-in 1000ms;
+    animation-timing-function: linear;
+    z-index: 2;
+}
+@keyframes slide-in {
+    from {
+      transform: translateX(-100%);
+      opacity: 0.25;
+    }
+    to {
+      transform: translateX(0%);
+      opacity: 1;
+    }
 }
 
 .favorites {
@@ -83,16 +97,20 @@
     font-size: 170%;
     font-style: oblique;
 }
-
-.address{
-    height: 80px;
-    width: auto;
-    background-color: brown;
-    color: white;
-    text-align: center;
-    vertical-align: middle;
-    line-height: 80px; 
+/* .address{
+    height: 100px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(143, 143, 143, 0.8);
 }
+
+.address h3{
+    margin: 0; 
+    padding-left: 10px; 
+    color: white;
+} */
 
 /* ABOUT US */
 .about-page{
@@ -102,30 +120,35 @@
     width: auto;
     align-items: center;
     justify-content: center;
-    margin-bottom: 25px;
-    margin-top: 25px;
+    background-image: url(../Components/Assets/Beigebackground.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #0C0C1E;
     
 }
+
 .about-info{
     height: auto;
-    width: 60vw;
-    color:  rgb(0, 0, 0);
+    width: 50vw;
     padding: 50px;
 }
+
 .about-title{
-    font-size: 60px;
+    font-size: 50px;
 }
 
 p {
-    font-size: 20px;
+    font-size: 17px;
     text-align: left; 
     padding-left: 5px;
     padding-right: 5px;
 }
+
 .about-image{
-    height: 90vh;
-    width: 30vw;
+    height: 100vh;
+    width: 40vw;
     vertical-align: middle;
+    padding: 50px;
 }
 
 /* Reviews  */
@@ -136,32 +159,85 @@ p {
     background-color: brown;
 } */
 
-
-
 /* GALLERY  */
 .gallery-page {
+    height: 100%;
+    width: auto;
+    background-image: url(../Components/Assets/Stonebackground.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.gallery-header{
     height: auto;
     width: auto;
-    background-color: brown;
-}
-.carousel {
-    position: relative;
-    height: 110vh;
     display: flex;
+    flex-direction: column;
+    color: whitesmoke;
+}
+
+.gallery-header h1{
+    padding: 10px;
+    margin-top: 50px;
+}
+
+.gallery-header p{
+    height: auto;
+    width: 60%;
+    text-align: center;
+    margin: auto;
+}
+
+.carousel-page{
+    height: auto;
+    width: auto;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.image {
-    width: 60vw;
-    height: 90vh;
-    border-radius: 10px;
+.carousel {
+    height: 100%;
+    width: 80%;
+    position: relative;
+    overflow: hidden;
+    padding: 50px;
 }
+  
+.slides-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.5s ease-in-out;
+    transform: translateX(0%);
+}
+  
+.slide {
+    width: 25%;
+    flex-shrink: 0;
+    margin: 20px;
+}
+  
+.slide:last-child {
+    margin-right: 0;
+}
+  
+.slide.active {
+    border: 2px solid #333;
+}
+  
+.image {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+  
 
 .right-arrow {
     position: absolute;
-    top:50%;
-    right: 100px;
+    top:40%;
+    right:0px;
     font-size: 4rem;
     color: whitesmoke;
     z-index: 10;
@@ -171,24 +247,13 @@ p {
 
 .left-arrow {
     position: absolute;
-    top:50%;
-    left: 100px;
+    top:40%;
+    left:0px;
     font-size: 4rem;
     color: whitesmoke;
     z-index: 10;
     cursor: pointer;
     user-select: none;
-}
-
-.slide {
-    opacity: 0;
-    transition-duration: 1s ease;
-}
-
-.slide.active {
-    opacity: 1;
-    transition-duration: 1s;
-    transform: scale(1.08);
 }
 
 /* FIND US */
@@ -202,20 +267,24 @@ p {
     color: whitesmoke;
     padding: 25px;
 }
+
 .findus-info{
     height: auto;
     width: auto; 
     align-items: center;
 }
+
 .info{
     margin-bottom: 50px;
     text-align: left;
 
 }
+
 .findus-location{
     height: 75vh;
     width: 50vw;
 }
+
 .footer{
     background-color: rgba(26, 26, 26, 0.959);
     color: whitesmoke;
@@ -226,29 +295,41 @@ p {
 }
 
 /* Menu */
-.menu{
+.menu-page{
     height: auto;
     width: auto; 
-    margin-top:100px;
     padding: 10px;
-    background-color:whitesmoke;
+    /* background-image: url(../Components/Assets/Stonebackground.jpg); */
+    background-color: rgba(218, 208, 201, 0.75);
+    background-repeat: no-repeat;
+    background-size: cover;;
 }
+
+.menu{
+    margin-top:150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .menu-card{
     height: auto;
-    width: 90%;
-    background-color: white;
+    width: 75%;
+    background-color: rgba(218, 208, 201, 0.9);
+    color: rgb(0, 0, 0);
     display: flex;
     flex-direction: row;
     align-items: center;
-    /* border: 5px solid black ; */
     border-radius: 10px;
     margin: 50px;
     padding: 10px;
 }
+
 .menu-card-img{
     height: 200px;
     width: 200px; 
 }
+
 .menu-card-details{
     height: auto;
     width: 100%; 
@@ -257,6 +338,7 @@ p {
     align-items: flex-start;
     padding:25px ;
 }
+
 .menu-card-order {
     height: auto;
     width: 100%; 
@@ -274,19 +356,36 @@ p {
 }
 
 /* Specials Menu */
+.specials-menu-page{
+    height: auto;
+    width: auto; 
+    padding: 10px;
+    background-color: rgba(218, 208, 201, 0.75);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 .specials-menu{
-    height: auto;
-    width: auto; 
-    margin-top:100px;
-    padding: 10px;
-    background-color:whitesmoke;
+    margin-top:150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
+
 /*Catering Menu */
-.catering-menu{
+.catering-menu-page{
     height: auto;
     width: auto; 
-    margin-top:100px;
     padding: 10px;
-    background-color:whitesmoke;
+    background-color: rgba(218, 208, 201, 0.75);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
-  
+
+.catering-menu{
+    margin-top:150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
