@@ -1,9 +1,11 @@
+import margarita from "../Assets/margarita.jpg" 
+
 export const menu = [
     {
         name: "Sicilian Slice",
         price: 3.25,
-        description: "",
-        img: "",
+        description: "A thin, crispy crust that is topped with a simple tomato sauce, slices of fresh mozzarella cheese, and fresh basil leaves. The sauce is usually made with San Marzano tomatoes, which are known for their sweet flavor and low acidity.",
+        img: margarita,
         category: "Pizza"
     },
     {

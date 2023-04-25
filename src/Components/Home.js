@@ -4,6 +4,7 @@ import '../Styling/Components.css';
 import Carousel from "./Helpers/Carousel";
 import aboutusimg from "./Assets/aboutusimg.jpg";
 import Button from 'react-bootstrap/Button';
+import { SocialIcon  } from 'react-social-icons';
 import { CarouselData } from "./Helpers/CarouselData";
 import { BsFillGeoAltFill } from "react-icons/bs";;
 
@@ -14,9 +15,6 @@ function Home() {
             <div className="landing-page">
                 <div className="eats-images">
                     <div className="eats"></div>
-                </div>
-                <div className="name">
-                    <h1 className="favorites">Pops Pizza</h1>
                 </div>
                 <div className="menu-link">
                     <h1 className="favorites">Find Your Favorites Here</h1>
@@ -83,7 +81,9 @@ function Home() {
                 </div>
             </div>
             <div className="footer">
-
+                <h1>Follow us on Social Media</h1>
+                <div><SocialIcon url="https://www.facebook.com/popspizzaRonkonkoma/" target="_blank" network="facebook" className='icon'/></div>	
+                <div><SocialIcon url="https://www.instagram.com/popspizzaronkonkoma/" target="_blank" network="instagram" className='icon'/></div>	
             </div>
         </div>
     )
