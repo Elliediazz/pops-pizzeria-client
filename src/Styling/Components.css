@@ -1,6 +1,6 @@
 /* NAVBAR  */
 .dark{
-    background-color: rgba(218, 208, 201, 0.9);
+    background-color: #eadac0a1;
 }
 #responsive-navbar-nav{
     justify-content: center;
@@ -14,6 +14,7 @@
     display: flex;
     height: auto;
     width: auto;
+    padding: 5px;
 }
 .navbar-brand {
     font-size: 1.35rem;
@@ -27,7 +28,7 @@
 /* HOME */
 .landing-page {
     display: flex;
-    height: 90vh;
+    height: 100vh;
     width: auto;
     /* margin-top: 125px; */
 } 
@@ -299,10 +300,10 @@ p {
     height: auto;
     width: auto; 
     padding: 10px;
-    /* background-image: url(../Components/Assets/Stonebackground.jpg); */
+    /* background-image: url(../Components/Assets/Stonebackground.jpg);
     background-color: rgba(218, 208, 201, 0.75);
     background-repeat: no-repeat;
-    background-size: cover;;
+    background-size: cover; */
 }
 
 .menu{
@@ -314,8 +315,8 @@ p {
 
 .menu-card{
     height: auto;
-    width: 75%;
-    background-color: rgba(218, 208, 201, 0.9);
+    width: 50%;
+    /* background-color: rgba(218, 208, 201, 0.35); */
     color: rgb(0, 0, 0);
     display: flex;
     flex-direction: row;
@@ -360,9 +361,7 @@ p {
     height: auto;
     width: auto; 
     padding: 10px;
-    background-color: rgba(218, 208, 201, 0.75);
-    background-repeat: no-repeat;
-    background-size: cover;
+
 }
 
 .specials-menu{
@@ -377,9 +376,6 @@ p {
     height: auto;
     width: auto; 
     padding: 10px;
-    background-color: rgba(218, 208, 201, 0.75);
-    background-repeat: no-repeat;
-    background-size: cover;
 }
 
 .catering-menu{
@@ -388,4 +384,21 @@ p {
     flex-direction: column;
     align-items: center;
 }
+
+/* Footer */
+.footer {
+    color: #666;
+    padding: 0px;
+    text-align: center;
+    font-size: 14px;
+    width: 100%;
+}
+
+.socialIcons{
+    display: flex;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+}
+  
 

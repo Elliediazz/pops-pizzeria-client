@@ -9,7 +9,7 @@ const Menu = () => {
         {menu.map((item, index) => (
           <div className="menu-card" key={index}>
             <div>
-              <img className="menu-card-img" src={item.img} alt={item.name} />
+              {item.img && <img  className="menu-card-img" src={item.img} alt={item.name} />}
             </div>
             <div className="menu-card-details">
               <div><h2>{item.name}</h2></div>

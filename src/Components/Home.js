@@ -16,17 +16,17 @@ function Home() {
                 <div className="eats">
                     <div className="eats-images"></div>
                 </div>
-                {/* <div className="menu-link">
+                <div className="menu-link">
                     <h1 className="favorites">Find Your Favorites Here</h1>
                     <Button variant="outline-light" size="lg" href="/menu" >ORDER NOW</Button>
-                </div> */}
+                </div>
             </div>
             {/* <div className="address" >
                 <h3><BsFillGeoAltFill/>1021 Portion Rd Lake Ronkonkoma, NY 11779</h3>
             </div> */}
             <div className="about-page">
                 <div className="about-info">
-                    <h1 className="about-title">Traditional Recipes Since 2000</h1>
+                    <h1 className="about-title">Our Origins </h1>
                     <p>
                         Pop's Pizza was named after its founder, my grandfather whom we called Pop, who had always had a love for making pizzas. Pop had been working in pizzerias since he was a teenager and had always dreamed of owning his own place one day.</p>
                     <p>As he grew older, Pop saved up enough money to finally make his dream a reality. He found a small storefront in a bustling neighborhood and opened Pop's Pizza. At first, business was slow, but Pop didn't let that deter him. He spent long hours in the kitchen, perfecting his recipes and experimenting with new and innovative toppings. His hard work paid off, and before long, Pops Pizza had a loyal following of customers who couldn't get enough of Pop's delicious pies.
@@ -85,11 +85,17 @@ function Home() {
                 </iframe>
                 </div>
             </div>
-            <div className="footer">
-                <h1>Follow us on Social Media</h1>
-                <div><SocialIcon url="https://www.facebook.com/popspizzaRonkonkoma/" target="_blank" network="facebook" className='icon'/></div>	
-                <div><SocialIcon url="https://www.instagram.com/popspizzaronkonkoma/" target="_blank" network="instagram" className='icon'/></div>	
-            </div>
+            <footer className="footer">
+                <div className="container">
+                    <h4>Find us on Social Media</h4>
+                    <div className="socialIcons">
+                        <div className='icons'><SocialIcon url="https://www.facebook.com/popspizzaRonkonkoma/" target="_blank" network="facebook" className='icon'/></div>	
+                        <div className='icons'><SocialIcon url="https://www.instagram.com/popspizzaronkonkoma/" target="_blank" network="instagram" className='icon'/></div>
+                        <div className='icons'><SocialIcon url="https://linktr.ee/popspizzaronkonkoma" target="_blank" network="linktree" className='icon'/></div>	
+                    </div>
+                    <span>Copyright © 2023 DiazDesigns</span>
+                </div>
+            </footer>
         </div>
     )
 }

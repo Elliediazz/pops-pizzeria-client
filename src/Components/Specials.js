@@ -8,7 +8,7 @@ const SpecialsMenu = () => {
       <div className="specials-menu">
         {specialsMenu.map((item, index) => (
           <div className="menu-card" key={index}>
-            <img src={item.img} alt={item.name} />
+            {item.img && <img  className="menu-card-img" src={item.img} alt={item.name} />}
             <div className="menu-card-details">
               <h2>{item.name}</h2>
               <p>{item.description}</p>
