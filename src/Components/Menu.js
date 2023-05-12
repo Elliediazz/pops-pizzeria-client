@@ -15,7 +15,7 @@ const Menu = () => {
               <div><h2>{item.name}</h2></div>
               <div><p>{item.description}</p></div>
               <div className="menu-card-order">
-                <h2>${item.price.toFixed(2)} USD</h2>
+                <h4>${item.price.toFixed(2)} USD</h4>
                 <button type="button" class="btn btn-dark">Order Now</button>
               </div>
             </div>

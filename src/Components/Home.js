@@ -27,11 +27,8 @@ function Home() {
             <div className="about-page">
                 <div className="about-info">
                     <h1 className="about-title">Our Origins </h1>
-                    <p>
-                        Pop's Pizza was named after its founder, my grandfather whom we called Pop, who had always had a love for making pizzas. Pop had been working in pizzerias since he was a teenager and had always dreamed of owning his own place one day.</p>
-                    <p>As he grew older, Pop saved up enough money to finally make his dream a reality. He found a small storefront in a bustling neighborhood and opened Pop's Pizza. At first, business was slow, but Pop didn't let that deter him. He spent long hours in the kitchen, perfecting his recipes and experimenting with new and innovative toppings. His hard work paid off, and before long, Pops Pizza had a loyal following of customers who couldn't get enough of Pop's delicious pies.
-                    </p>
-                    <p></p>
+                    <p>Pop's Pizza was named after its founder, my grandfather whom we called Pop, who had always had a love for making pizzas. Pop had been working in pizzerias since he was a teenager and had always dreamed of owning his own place one day.</p>
+                    <p>As he grew older, Pop saved up enough money to finally make his dream a reality. He found a small storefront in a bustling neighborhood and opened Pop's Pizza. At first, business was slow, but Pop didn't let that deter him. He spent long hours in the kitchen, perfecting his recipes and experimenting with new and innovative toppings. His hard work paid off, and before long, Pops Pizza had a loyal following of customers who couldn't get enough of Pop's delicious pies.</p>
                     <p>To this day, Pop's Pizza remains a family-owned and operated business, with Pop's grandchildren now working alongside their parents to carry on the legacy that their grandfather started all those years ago.</p>
                     <p>The secret to Pop's Pizza's success? A whole lot of love, dedication, and of course, the best pizza around.</p>
                 </div>
