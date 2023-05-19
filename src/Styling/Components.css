@@ -326,7 +326,7 @@ p {
     justify-content:space-around;
     background-color: rgba(26, 26, 26, 0.959);
     color: whitesmoke;
-    padding: 25px;
+    padding-top: 100px;
 }
 
 .findus-info{
@@ -334,7 +334,8 @@ p {
     width: auto; 
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: left;
+    justify-content: center;
 }
 
 .info{
@@ -417,8 +418,6 @@ p {
     flex-direction: row;
     align-items: center;
     border-radius: 10px;
-    margin: 50px;
-    padding: 10px;
 }
 
 .menu-card-img{
@@ -432,7 +431,7 @@ p {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding:25px ;
+    padding:5px ;
 }
 
 .menu-card-order {
@@ -471,15 +470,52 @@ p {
 .catering-menu-page{
     height: auto;
     width: auto; 
-    background-color: rgba(218, 208, 201, 0.75);
-    padding: 10px;
-}
-
-.catering-menu{
-    margin-top:100px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: rgba(218, 208, 201, 0.75);
+    padding: 10px;
+}
+.catering-menu-page h1{
+    padding: 150px 100px 50px 100px;
+}
+.catering-menu{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+.catering-card{
+    height: auto;
+    width: 90%;
+    color: rgb(0, 0, 0);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-radius: 10px;
+    margin: 50px;
+    flex: 0 0 25%;
+}
+@media (max-width: 991px) {
+    .catering-card {
+      flex: 0 0 50%;
+    }
+}
+  
+@media (max-width: 431px) {
+    .catering-card {
+      flex: 0 0 100%;
+    }
+}
+
+.catering-card-details{
+    height: auto;
+    width: 100%; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
 }
 
 @media (max-width: 991px) {
@@ -497,3 +533,13 @@ p {
     flex-direction: column;
     align-items: center;
   }
+
+
+  /* Menu One server */
+
+.menu1-page{
+    height: 100vh;
+    width: auto; 
+    /* margin-top: 10px; */
+    /* background-color: rgba(218, 208, 201, 0.75); */
+}
