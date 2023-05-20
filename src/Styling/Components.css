@@ -321,12 +321,13 @@ p {
 .findus-page{
     display: flex;
     flex-direction: row;
-    height: 100vh;
+    height: auto;
     align-items: center;
     justify-content:space-around;
     background-color: rgba(26, 26, 26, 0.959);
     color: whitesmoke;
     padding-top: 100px;
+    padding-bottom: 100px;
 }
 
 .findus-info{
@@ -352,10 +353,10 @@ p {
 .footer{
     background-color: rgba(26, 26, 26, 0.959);
     color: whitesmoke;
-    height: 50vh;
+    height: auto;
     display: flex;
     flex-direction: row;
-    padding: 50px;
+    padding: 10px;
 }
 
 @media (max-width: 991px) {
@@ -363,7 +364,7 @@ p {
         flex-direction: column;
     }
     .findus-location{
-        height: 75vh;
+        height: 80vh;
         width: 90vw;
     }
     .findus-info{
@@ -533,13 +534,3 @@ p {
     flex-direction: column;
     align-items: center;
   }
-
-
-  /* Menu One server */
-
-.menu1-page{
-    height: 100vh;
-    width: auto; 
-    /* margin-top: 10px; */
-    /* background-color: rgba(218, 208, 201, 0.75); */
-}
