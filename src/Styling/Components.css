@@ -1,12 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;1,6..96,600;1,6..96,800&family=Fira+Sans+Condensed:wght@200;400;600&display=swap');
 
+
 *{
     font-family: "Bodoni",sans-serif;
 }
 /* NAVBAR  */
 .nav-background{
     background-color: rgba(218, 208, 201, 0.65);
+    width: 100%;
 }
+
+.navbar-container {
+    display: flex;
+    justify-content: center;
+  }
 
 .logo {
     height: 75px;
@@ -16,9 +23,8 @@
 .icons {
     display: flex;
     align-items: center;
+    justify-content: end;
     height: auto;
-    width: auto;
-    padding: 5px;
 }
 
 .bag-quantity {
@@ -399,48 +405,30 @@ p {
 .menu-page{
     height: auto;
     width: auto; 
+    margin-top: 100px;
     padding: 10px;
     background-color: rgba(218, 208, 201, 0.75);
 }
-
 .menu{
-    margin-top:100px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    justify-content: center;
+    align-content: space-between;
 }
 
 .menu-card{
-    height: auto;
-    width: 50%;
-    /* background-color: rgba(218, 208, 201, 0.35); */
-    color: rgb(0, 0, 0);
-    display: flex;
-    flex-direction: row;
+    width: auto;
+    min-height: 300px;
+    justify-content: center;
     align-items: center;
+    background-color: rgba(218, 208, 201, 0.35);
+    color: rgb(0, 0, 0);
     border-radius: 10px;
+    display: flex;
+    align-items: center;
 }
 
 .menu-card-img{
     height: 200px;
     width: 200px; 
-}
-
-.menu-card-details{
-    height: auto;
-    width: 100%; 
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding:5px ;
-}
-
-.menu-card-order {
-    height: auto;
-    width: 100%; 
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
 }
   
 .menu-card-order h4 {
@@ -448,7 +436,6 @@ p {
 }
 .menu-card-order button {
     text-align:center;
-    margin-left: 10px;
 }
 
 /* Specials Menu */
