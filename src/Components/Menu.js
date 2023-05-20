@@ -1,19 +1,37 @@
 import { useState, useEffect } from "react"
-import { Link } from "react-router-dom"
+//import { Link } from "react-router-dom"
 
 
 function Menu() {
     const [data, setData] = useState([])
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        async function fetchData(){
-            const response = await fetch('http://localhost:8080/menu/all')
-            const data = await response.json()
-            console.log(data)
-            setData(data)
+      async function fetchData() {
+        try {
+          const response = await fetch("http://localhost:8080/menu/all");
+          if (!response.ok) {
+            throw new Error("Failed to fetch menu");
+          }
+          const data = await response.json();
+          console.log(data);
+          setData(data);
+        } catch (error) {
+          console.error(error);
+        } finally {
+          setIsLoading(false);
         }
-        fetchData()
-    }, [])
+      }
+      fetchData();
+    }, []);
+  
+    if (isLoading) {
+      return <div>Loading...</div>;
+    }
+  
+    if (data.length === 0) {
+      return <div>No items available</div>;
+    }
 
     const display = data && data.map(menu => {
       return(

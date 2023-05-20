@@ -1,27 +1,63 @@
-import React from "react";
-import { specialsMenu } from './Helpers/SpecialsData'
+import { useState, useEffect } from "react";
 
-const SpecialsMenu = () => {
+function SpecialsMenu() {
+  const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await fetch("http://localhost:8080/specials/all");
+        if (!response.ok) {
+          throw new Error("Failed to fetch specials");
+        }
+        const data = await response.json();
+        console.log(data);
+        setData(data);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    fetchData();
+  }, []);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (data.length === 0) {
+    return <div>No specials available</div>;
+  }
+
+  const display = data && data.map(specials => {
+    return(
+      <div className="menu-page">
+          <div className="menu">
+              <div className="menu-card" >
+                  <div>
+                  {specials.img && <img  className="menu-card-img" src={specials.img} alt={specials.name} />}
+                  </div>
+                  <div className="menu-card-details">
+                      <div><h2>{specials.name}</h2></div>
+                      <div><p>{specials.description}</p></div>
+                      <div className="menu-card-order">
+                          <h4>${specials.price.toFixed(2)} USD</h4>
+                          <button type="button" className="btn btn-dark">Order Now</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+    )
+  })
 
   return (
-    <div className="specials-menu-page">
-      <div className="specials-menu">
-        {specialsMenu.map((item, index) => (
-          <div className="menu-card" key={index}>
-            {item.img && <img  className="menu-card-img" src={item.img} alt={item.name} />}
-            <div className="menu-card-details">
-              <h2>{item.name}</h2>
-              <p>{item.description}</p>
-              <div className="menu-card-order">
-                <h2>${item.price.toFixed(2)} USD</h2>
-                <button type="button" class="btn btn-dark">Order Now</button>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
+    <div className="menu-page">
+      {display}
     </div>
   );
-};
+}
 
 export default SpecialsMenu;
