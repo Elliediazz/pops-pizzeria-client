@@ -1,4 +1,8 @@
 import { useState, useEffect } from "react";
+import { Container, Row, Col, Card, Button } from 'react-bootstrap';
+import { CartContext } from "../CartContext";
+
+import menuimg from "./Assets/pepperoni.jpg"
 
 function SpecialsMenu() {
   const [data, setData] = useState([]);
@@ -31,27 +35,34 @@ function SpecialsMenu() {
     return <div>No specials available</div>;
   }
 
-  const display = data && data.map(specials => {
-    return(
-      <div className="menu-page">
-          <div className="menu">
-              <div className="menu-card" >
-                  <div>
-                  {specials.img && <img  className="menu-card-img" src={specials.img} alt={specials.name} />}
-                  </div>
-                  <div className="menu-card-details">
-                      <div><h2>{specials.name}</h2></div>
-                      <div><p>{specials.description}</p></div>
-                      <div className="menu-card-order">
-                          <h4>${specials.price.toFixed(2)} USD</h4>
-                          <button type="button" className="btn btn-dark">Order Now</button>
-                      </div>
-                  </div>
+  const display = data && (
+    <Container className="container">
+      <Row xs={1} md={6} className="g-3 ">
+        {data.map((specials, index) => (
+          <Col key={index} md={5}>
+            <Card className="menu-card">
+              <div>
+                { <img className="menu-card-img" src={menuimg} alt={specials.name} />}
+                {/* {specials.img && <img className="specials-card-img" src={specials.img} alt={specials.name} />} */}
               </div>
-          </div>
-      </div>
-    )
-  })
+              <Card.Body>
+                <div className="title">
+                  <h1>{specials.name}</h1>
+                  <p>{specials.description && specials.description}</p>
+                </div>
+                <div className="menu-card-order">
+                  <h5>${specials.price.toFixed(2)}</h5>
+                  <Button type="button" className="btn btn-dark">
+                    Order Now
+                  </Button>
+                </div>
+              </Card.Body>
+            </Card>
+          </Col>
+        ))}
+      </Row>
+    </Container>
+  );
 
   return (
     <div className="menu-page">

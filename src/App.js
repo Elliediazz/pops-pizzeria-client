@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-d
 import NavBar from './Components/Navbar';
 import Home from './Components/Home';
 import Menu from './Components/Menu';
-import { CartProvider } from './CartContext';
+import CartProvider  from './CartContext';
 
 import SpecialsMenu from './Components/Specials';
 import CateringMenu from './Components//Catering';
@@ -25,7 +25,7 @@ function App() {
           <Route path='/menu' element={<Menu />}/>
           <Route path='/specials' element={<SpecialsMenu />}/>
           <Route path='/catering' element={<CateringMenu />}/>
-          <Route path='/cart' element={<Checkout />}/>
+          <Route path='/checkout' element={<Checkout />}/>
           <Route path='/success' element={<Success />}/>
           <Route path='/cancel' element={<Cancel/>}/>
           <Route path='/error' element={<Error />}/>

@@ -83,7 +83,7 @@ function Home() {
                 </div>
             </div>
             <footer className="footer">
-                <div className="container">
+                <div className="footer-container">
                     <h4>Find us on Social Media</h4>
                     <div className="socialIcons">
                         <div className='icons'><SocialIcon url="https://www.facebook.com/popspizzaRonkonkoma/" target="_blank" network="facebook" className='icon'/></div>	

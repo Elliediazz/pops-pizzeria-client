@@ -25,6 +25,7 @@
     align-items: center;
     justify-content: end;
     height: auto;
+    padding: 10px;
 }
 
 .bag-quantity {
@@ -356,15 +357,6 @@ p {
     width: 50vw;
 }
 
-.footer{
-    background-color: rgba(26, 26, 26, 0.959);
-    color: whitesmoke;
-    height: auto;
-    display: flex;
-    flex-direction: row;
-    padding: 10px;
-}
-
 @media (max-width: 991px) {
     .findus-page{
         flex-direction: column;
@@ -387,8 +379,13 @@ p {
 
 /* Footer */
 .footer {
+    background-color: rgba(26, 26, 26, 0.959);
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
     color: #666;
-    padding: 0px;
+    padding: 5px;
     text-align: center;
     font-size: 14px;
     width: 100%;
@@ -396,12 +393,17 @@ p {
 
 .socialIcons{
     display: flex;
-    padding: 10px;
+    padding:15px;
     justify-content: center;
     align-items: center;
 }
 
 /* Menus */
+.container{
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
 .menu-page{
     height: auto;
     width: auto; 
@@ -409,26 +411,36 @@ p {
     padding: 10px;
     background-color: rgba(218, 208, 201, 0.75);
 }
-.menu{
-    justify-content: center;
-    align-content: space-between;
+.col-md-5 {
+    flex: 0 0 auto;
+    width: 50%;
 }
-
 .menu-card{
     width: auto;
-    min-height: 300px;
-    justify-content: center;
+    min-height: 200px;
+    display: flex;
+    flex-direction: row-reverse;
     align-items: center;
     background-color: rgba(218, 208, 201, 0.35);
     color: rgb(0, 0, 0);
     border-radius: 10px;
-    display: flex;
-    align-items: center;
 }
-
+.card-body{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.title{
+    margin-bottom: 30px;
+}
 .menu-card-img{
-    height: 200px;
+    height: auto;
     width: 200px; 
+}
+.menu-card-order{
+    display: flex;
+    justify-content: space-between;
 }
   
 .menu-card-order h4 {

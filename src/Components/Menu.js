@@ -1,78 +1,85 @@
-import { useState, useEffect, useContext } from "react"
-import { Container, Row, Col, Card, Button } from 'react-bootstrap';
-import { CartContext } from "../CartContext";
-//import { Link } from "react-router-dom"
+import { useContext, useEffect, useState } from 'react';
+import { Card, Button, Container, Row, Col, Form } from 'react-bootstrap';
+import { CartContext } from '../CartContext';
 
+import menuimg from './Assets/vodkapasta.jpg';
 
 function Menu() {
-    const [data, setData] = useState([])
-    const [isLoading, setIsLoading] = useState(true);
-    const cart = useContext(CartContext)
+  const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-    useEffect(() => {
-      async function fetchData() {
-        try {
-          const response = await fetch("http://localhost:8080/menu/all");
-          if (!response.ok) {
-            throw new Error("Failed to fetch menu");
-          }
-          const data = await response.json();
-          console.log(data);
-          setData(data);
-        } catch (error) {
-          console.error(error);
-        } finally {
-          setIsLoading(false);
+  const cart = useContext(CartContext);
+  console.log(cart.items);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await fetch("http://localhost:8080/menu/all");
+        if (!response.ok) {
+          throw new Error("Failed to fetch menu");
         }
+        const data = await response.json();
+        console.log(data);
+        setData(data);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setIsLoading(false);
       }
-      fetchData();
-    }, []);
-  
-    if (isLoading) {
-      return <div>Loading...</div>;
     }
-  
-    if (data.length === 0) {
-      return <div>No items available</div>;
-    }
+    fetchData();
+  }, []);
 
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
-    const display = data && (
-      <Container>
-        <Row xs={1} md={4} className="g-4">
+  if (data.length === 0) {
+    return <div>No items available</div>;
+  }
+
+  return (
+    <div className="menu-page">
+      <Container className="container">
+        <Row xs={1} md={6} className="g-3">
           {data.map((menu, index) => (
-            <Col key={index} xs={12} sm={6} md={4} className= "menu">
+            <Col key={index} md={5}>
               <Card className="menu-card">
                 <div>
-                  {menu.img && <img className="menu-card-img" src={menu.img} alt={menu.name} />}
+                  <img className="menu-card-img" src={menuimg} alt={menu.name} />
+                  {/* {menu.img && <img className="menu-card-img" src={menu.img} alt={menu.name} />} */}
                 </div>
-                <Card.Body className="">
-                  <div>
-                    <h2>{menu.name}</h2>
-                  </div>
-                  <div>
+                <Card.Body>
+                  <div className="title">
+                    <h1>{menu.name}</h1>
                     <p>{menu.description && menu.description}</p>
-                    <h4>${menu.price.toFixed(2)} USD</h4>
                   </div>
                   <div className="menu-card-order">
-                    <Button type="button" className="btn btn-dark">
-                      Order Now
-                    </Button>
+                    <h5>${menu.price.toFixed(2)}</h5>
                   </div>
+                  { cart.getItemQuantity(menu._id) > 0 ?
+                    <>
+                        <Form as={Row}>
+                          
+                            <Form.Label column="true" sm="6">Items In Cart: {cart.getItemQuantity(menu._id)}</Form.Label>
+                            <Col sm="6">
+                                <Button sm="6" onClick={() => cart.addOneToCart(menu._id)} className="mx-2 btn-dark">+</Button>
+                                <Button sm="6" onClick={() => cart.removeOneFromCart(menu._id)} className="mx-2 btn-dark">-</Button>
+                            </Col>
+                        </Form>
+                        <Button variant="danger" onClick={() => cart.deleteFromCart(menu._id)} className="my-2">Remove from cart</Button>
+                    </>
+                    :
+                    <Button type="button" className="btn btn-dark" onClick={() => cart.addOneToCart(menu._id)}>Add To Cart</Button>
+                }
                 </Card.Body>
               </Card>
             </Col>
           ))}
         </Row>
       </Container>
-    );
-
-
-  return (
-    <div className="menu-page">
-      {display}
     </div>
   );
-};
+}
 
 export default Menu;

@@ -1,19 +1,17 @@
-import { createContext, useState, useEffect } from "react";
+import React, { createContext, useState, useEffect } from "react";
 
-const CartContext = createContext({
+export const CartContext = createContext({
   items: [],
   getItemQuantity: () => {},
   addOneToCart: () => {},
   removeOneToCart: () => {},
   deleteFromCart: () => {},
-  getTotalCost: () => {}
+  getTotalCost: () => {},
 });
 
 function CartProvider({ children }) {
   const [cartItems, setCartItems] = useState([]);
-  const [data, setData] = useState([]);
-
-// Need to find a way to incorperate backend to Minute 47:51 in video
+  const [menuData, setMenuData] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
@@ -24,24 +22,16 @@ function CartProvider({ children }) {
         }
         const data = await response.json();
         console.log(data);
-        setData(data);
+        setMenuData(data);
       } catch (error) {
-        console.error(error);}
+        console.error(error);
+      }
     }
     fetchData();
   }, []);
 
-  function getItemData(id) {
-    return fetch(`"http://localhost:8080/menu/all"/${id}`)
-      .then(response => response.json())
-      .catch(error => {
-        console.error(`Failed to fetch item data for ID ${id}:`, error);
-        return null;
-      });
-  }
-
-  function getItemQuantity(id) {
-    const quantity = cartItems.find(item => item.id === id)?.quantity;
+  function getItemQuantity(_id) {
+    const quantity = cartItems.find((item) => item._id === _id)?.quantity;
 
     if (quantity === undefined) {
       return 0;
@@ -50,64 +40,85 @@ function CartProvider({ children }) {
     return quantity;
   }
 
-  function addOneToCart(id) {
-    const quantity = getItemQuantity(id);
+  function addOneToCart(_id) {
+    const quantity = getItemQuantity(_id);
 
     if (quantity === 0) {
       setCartItems([
         ...cartItems,
         {
-          id: id,
-          quantity: 1
-        }
+          _id: _id,
+          quantity: 1,
+        },
       ]);
     } else {
       setCartItems(
-        cartItems.map(item =>
-          item.id === id ? { ...item, quantity: item.quantity + 1 } : item
+        cartItems.map((item) =>
+          item._id === _id ? { ...item, quantity: item.quantity + 1 } : item
         )
       );
     }
   }
 
-  function removeOneToCart(id) {
-    const quantity = getItemQuantity(id);
+  function removeOneFromCart(_id) {
+    const quantity = getItemQuantity(_id);
 
     if (quantity === 1) {
-      deleteFromCart(id);
+      deleteFromCart(_id);
     } else {
       setCartItems(
-        cartItems.map(item =>
-          item.id === id ? { ...item, quantity: item.quantity - 1 } : item
+        cartItems.map((item) =>
+          item._id === _id ? { ...item, quantity: item.quantity - 1 } : item
         )
       );
     }
   }
 
-  function deleteFromCart(id) {
-    setCartItems(cartItems =>
-      cartItems.filter(currentItem => currentItem.id !== id)
+  function deleteFromCart(_id) {
+    setCartItems((cartItems) =>
+      cartItems.filter((currentItem) => currentItem._id !== _id)
     );
   }
 
   async function getTotalCost() {
     let totalCost = 0;
+
     for (const cartContent of cartItems) {
-      const itemData = await getItemData(cartContent.id);
-      if (itemData) {
+      const itemData = await getItemData(cartContent._id);
+      if (itemData !== null) {
         totalCost += itemData.price * cartContent.quantity;
       }
     }
+
     return totalCost;
+  }
+
+  async function getItemData(_id) {
+    try {
+      const item = menuData.find((item) => item._id === _id);
+      if (item) {
+        return item;
+      } else {
+        const response = await fetch(`http://localhost:8080/menu/${_id}`);
+        if (!response.ok) {
+          throw new Error(`Failed to fetch item data for ID ${_id}`);
+        }
+        const data = await response.json();
+        return data;
+      }
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
   }
 
   const contextValue = {
     items: cartItems,
     getItemQuantity,
     addOneToCart,
-    removeOneToCart,
+    removeOneFromCart,
     deleteFromCart,
-    getTotalCost
+    getTotalCost,
   };
 
   return (
@@ -117,4 +128,4 @@ function CartProvider({ children }) {
   );
 }
 
-export { CartProvider, CartContext };
+export default CartProvider;
