@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;1,6..96,600;1,6..96,800&family=Fira+Sans+Condensed:wght@200;400;600&display=swap');
 
-
 *{
     font-family: "Bodoni",sans-serif;
 }
@@ -399,6 +398,9 @@ p {
 }
 
 /* Menus */
+.loading{
+    margin-top: 200px;
+}
 .container{
     justify-content: center;
     display: flex;
@@ -527,9 +529,47 @@ p {
 }
 
 /* Shopping cart */
-  .cart-page{
+  .shopping-cart{
     margin-top:100px;
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
+}
+.cart-items{
+    display: flex;
+    flex-direction: column;
+    margin: 15px;
+}
+.cart-img{
+    height: 250px;
+    width: 250px;
+    margin-right: 25px;
+}
+.total-checkout-container{
+    border-top: #0C0C1E solid;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-top: 10px;
+}
+.checkout-btn{
+    margin: 5px;
+}
+/* Login */
+.login-page{
+    margin-top: 150px;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+/* signup */
+.signup-page{
+    margin-top: 150px;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

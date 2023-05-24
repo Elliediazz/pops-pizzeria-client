@@ -9,7 +9,6 @@ function Menu() {
   const [isLoading, setIsLoading] = useState(true);
 
   const cart = useContext(CartContext);
-  console.log(cart.items);
 
   useEffect(() => {
     async function fetchData() {
@@ -19,7 +18,7 @@ function Menu() {
           throw new Error("Failed to fetch menu");
         }
         const data = await response.json();
-        console.log(data);
+        //console.log(data);
         setData(data);
       } catch (error) {
         console.error(error);
@@ -31,11 +30,11 @@ function Menu() {
   }, []);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <div className='loading'><h1>Loading...</h1></div>;
   }
 
   if (data.length === 0) {
-    return <div>No items available</div>;
+    return <div className='loading'><h1>No items available</h1></div>;
   }
 
   return (

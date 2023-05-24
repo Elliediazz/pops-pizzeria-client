@@ -7,10 +7,15 @@ export const CartContext = createContext({
   removeOneToCart: () => {},
   deleteFromCart: () => {},
   getTotalCost: () => {},
+  getCartItems: () => {},
+  getItemData: () => {}
 });
 
 function CartProvider({ children }) {
-  const [cartItems, setCartItems] = useState([]);
+  const [cartItems, setCartItems] = useState(() => {
+    const storedCartItems = localStorage.getItem("cartItems");
+    return storedCartItems ? JSON.parse(storedCartItems) : [];
+  });
   const [menuData, setMenuData] = useState([]);
 
   useEffect(() => {
@@ -21,7 +26,6 @@ function CartProvider({ children }) {
           throw new Error("Failed to fetch menu");
         }
         const data = await response.json();
-        console.log(data);
         setMenuData(data);
       } catch (error) {
         console.error(error);
@@ -29,6 +33,10 @@ function CartProvider({ children }) {
     }
     fetchData();
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  }, [cartItems]);
 
   function getItemQuantity(_id) {
     const quantity = cartItems.find((item) => item._id === _id)?.quantity;
@@ -93,6 +101,19 @@ function CartProvider({ children }) {
     return totalCost;
   }
 
+  async function getCartItems() {
+    let cartItems = [];
+
+    for (const cartContent of cartItems) {
+      const itemData = await getItemData(cartContent._id);
+      if (itemData !== null) {
+        cartItems.push(itemData.name)
+      }
+    }
+
+    return cartItems;
+  }
+
   async function getItemData(_id) {
     try {
       const item = menuData.find((item) => item._id === _id);
@@ -107,7 +128,7 @@ function CartProvider({ children }) {
         return data;
       }
     } catch (error) {
-      console.error(error);
+      console.error('error getting menu items',error);
       return null;
     }
   }
@@ -119,6 +140,8 @@ function CartProvider({ children }) {
     removeOneFromCart,
     deleteFromCart,
     getTotalCost,
+    getCartItems,
+    getItemData
   };
 
   return (
