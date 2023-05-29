@@ -1,22 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../AuthContext";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import useToken from '../../Hooks/useToken';
-
-
 
 function Login() {
+  const { state, dispatch } = useContext(AuthContext);
+  const isAuthenticated = state.isAuthenticated; // Define isAuthenticated variable
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const { token, setToken } = useToken();
-
 
   function validateForm() {
     return email.length > 0 && password.length > 0;
@@ -25,28 +22,40 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // Send login request to the server
       const response = await axios.post("http://localhost:8080/users/login", {
         email: email,
-        password: password
+        password: password,
+      },{
+        headers: {
+          "Content-Type": "application/json"
+        }
       });
-      console.log(response)
-
-      // Set token from response using useToken hook
-      setToken(response.data.token);
-      //console.log(response.data.token)
-      setIsLoggedIn(true);
-
+  
+      dispatch({ type: 'LOGIN', payload: {
+        email: email,
+        password: password,
+        user: response.data.user,
+        token: response.data.token,
+      } });
+  
       navigate("/shoppingcart");
+  
     } catch (error) {
       console.error("Login error:", error);
       toast.error("Incorrect username or password", {
-        position: toast.POSITION.TOP_CENTER
+        position: toast.POSITION.TOP_CENTER,
       });
-      
     }
   };
 
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/shoppingcart");
+    }
+  }, [isAuthenticated]);
+  
+   
+  
   return (
     <div className="login-page">
       <Form onSubmit={handleSubmit}>

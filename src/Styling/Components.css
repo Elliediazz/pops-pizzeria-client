@@ -39,6 +39,12 @@
     font-weight: 700;
     color: black;
 }
+.logout{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin:5px;
+}
 
 .navbar-brand {
     font-size: 1.35rem;
@@ -552,7 +558,7 @@ p {
     justify-content: space-between;
     padding-top: 10px;
 }
-.checkout-btn{
+.logout-btn{
     margin: 5px;
 }
 /* Login */

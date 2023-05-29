@@ -18,7 +18,7 @@ function SpecialsMenu() {
           throw new Error("Failed to fetch specials");
         }
         const data = await response.json();
-        console.log(data);
+        //console.log(data);
         setData(data);
       } catch (error) {
         console.error(error);

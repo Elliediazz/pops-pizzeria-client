@@ -1,61 +1,69 @@
-import React, { useState, useEffect, useContext } from 'react';
-import axios from 'axios';
+import React, { useState, useContext } from 'react';
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import { Button, Container, Navbar, Nav, Modal } from 'react-bootstrap';
+import { toast } from "react-toastify";
 import '../Styling/Components.css';
 import logo from '../Components/Assets/PopsLogo.png';
 import { IoCartOutline } from 'react-icons/io5';
 import { CartContext } from '../CartContext';
+import { AuthContext } from './AuthContext';
 import CartTotal from './CartTotal';
 import CartItems from './CartItems';
 
 function NavBar() {
+  const navigate = useNavigate();
+  const { state, dispatch } = useContext(AuthContext);
   const cart = useContext(CartContext);
-
-  const [user, setUser] = useState({
-    name: '',
-    username: '',
-  });
-
-  const [currentUser, setCurrentUser] = useState(null);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const [loading, setLoading] = useState(true);
+
+  console.log(state.isAuthenticated)
+  console.log(localStorage.getItem("token"))
 
   const itemsCount = cart.items.reduce((sum, item) => sum + item.quantity, 0);
 
-  useEffect(() => {
-    const checkLoginStatus = async () => {
-      const token = localStorage.getItem('token');
-      console.log("navtoken:", token)
-      if (token !== null) {
-        try {
-          const response = await axios.get('http://localhost:8080/users/authenticate', {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          });
-          console.log("loggedIn?:", response.data);
-
-          localStorage.setItem('token', response.data.token);
-          setCurrentUser(response.data);
-          setUser({
-            name: `${response.data.name}`,
-            username: response.data.username,
-          });
-
-          setLoading(false);
-        } catch (error) {
-          //redo: handle error 
-          console.log("error", error)
+  const handleLogout = async (e) => {
+    e.preventDefault();
+    try {
+      // Send logout request to the server
+      const token = localStorage.getItem("token");
+      const response = await axios.post(
+        "http://localhost:8080/users/logout",
+        null,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         }
-      }
-    };
-    checkLoginStatus();
-  }, []);
-
-  const isLoggedIn = currentUser !== null;
-  console.log(currentUser);
+      );
+  
+      // Handle the response
+      console.log(response.data);
+  
+      // Dispatch the LOGOUT action asynchronously
+      dispatchLogout();
+  
+      navigate("/shoppingcart");
+    } catch (error) {
+      console.error("Logout error:", error);
+      toast.error("Logout failed", {
+        position: toast.POSITION.TOP_CENTER,
+      });
+    }
+  };
+  
+  // Define a separate dispatch function to handle the logout action asynchronously
+  const dispatchLogout = async () => {
+    try {
+      await dispatch({ type: "LOGOUT" });
+      navigate("/login");
+    } catch (error) {
+      console.error("Dispatch logout error:", error);
+    }
+  };
+  
 
   return (
     <div className="navbar-container">
@@ -82,29 +90,33 @@ function NavBar() {
               <Nav.Link className="navbar-brand" href="/#findus" style={{ color: '#3f1503', fontFamily: 'Helvetica' }}>
                 FIND US
               </Nav.Link>
-              <div className="icons" id="display">
-                <Button onClick={handleShow} style={{ color: '#3f1503' }}>
-                  <IoCartOutline size="40px" />
-                </Button>
-                <span className="bag-quantity">
-                  <span>{itemsCount}</span>
-                </span>
-              </div>
             </Nav>
           </Navbar.Collapse>
           <div className="icons" id="cart">
             <Button
               onClick={handleShow}
-              style={{ color: '#3f1503', background: 'transparent', border: 'none' }}
-            >
+              style={{ color: '#3f1503', background: 'transparent', border: 'none' }}>
               <IoCartOutline size="40px" />
             </Button>
             <span className="bag-quantity">
               <span>{itemsCount}</span>
             </span>
+            {state.isAuthenticated ? (
+              <div>
+                <Nav.Link className="navbar-brand logout" onClick={handleLogout} style={{ color: '#3f1503', fontFamily: 'Helvetica' }}
+                  >Logout
+                </Nav.Link>
+              </div>
+              ) : (
+                <Nav.Link className="navbar-brand logout" href="/login" style={{ color: '#3f1503', fontFamily: 'Helvetica' }}
+                  >Login
+                </Nav.Link>
+              )}
           </div>
         </Container>
       </Navbar>
+
+      {/* Modal Cart */}
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Shopping Cart</Modal.Title>
@@ -113,18 +125,22 @@ function NavBar() {
           {itemsCount > 0 ? (
             <div className="align-items-center">
               {cart.items.map((currentItem, index) => (
-                <CartItems key={index} _id={currentItem._id} quantity={currentItem.quantity}></CartItems>
+                <CartItems key={index} _id={currentItem._id} quantity={currentItem.quantity} />
               ))}
               <h1>
                 <CartTotal />
               </h1>
-              {/* <Button variant="success" href="/menu">Add More Items</Button> */}
-              {isLoggedIn ? (
-                <Button variant="success" href="/checkout">
-                  Checkout
-                </Button>
+              {state.isAuthenticated ? (
+                <div>
+                  <Button variant="success" className="logout-btn" href="/checkout">
+                    Checkout
+                  </Button>
+                  <Button className="logout-btn" onClick={handleLogout} variant="success">
+                    Logout
+                  </Button>
+              </div>
               ) : (
-                <Button variant="success" href="/login">
+                <Button variant="success" className="logout-btn" href="/login">
                   Login to Checkout
                 </Button>
               )}
@@ -132,9 +148,20 @@ function NavBar() {
           ) : (
             <div>
               <h5>Your cart is currently empty</h5>
-              <Button variant="success" href="/menu">
-                Order Now
-              </Button>
+              {state.isAuthenticated ? (
+                <div>
+                  <Button variant="success" href="/menu">
+                    Order Now
+                  </Button>
+                  <Button className="navbar-brand logout" onClick={handleLogout} variant="success">
+                    Logout
+                  </Button>
+                </div>
+              ) : (
+                <Button variant="success" href="/login">
+                  Login to Order
+                </Button>
+              )}
             </div>
           )}
         </Modal.Body>
@@ -144,3 +171,4 @@ function NavBar() {
 }
 
 export default NavBar;
+

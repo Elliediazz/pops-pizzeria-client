@@ -7,9 +7,11 @@ import NavBar from './Components/Navbar';
 import Home from './Components/Home';
 import Menu from './Components/Menu';
 import CartProvider  from './CartContext';
+import AuthProvider from './Components/AuthContext';
 import SpecialsMenu from './Components/Specials';
 import CateringMenu from './Components//Catering';
-import ShoppingCart from './Components/Shopping Cart';
+import ShoppingCart from './Components/ShoppingCart';
+import Checkout from './Components/Checkout';
 import Cancel from './Pages/Cancel'
 import Success from './Pages/Success'
 import Error from './Components/Error'
@@ -21,21 +23,23 @@ import "react-toastify/dist/ReactToastify.css";
 
 
 function App() {
-  const [token, setToken] = useState("");
+  const [token, setToken] = useState(localStorage.getItem("token"));
 
   return (
+    <AuthProvider>
     <CartProvider>
     <div className="App">
       <Router>
-        <header><NavBar setToken={setToken}/></header>
+        <header><NavBar /></header>
         <Routes>
           <Route exact path='/' element={<Home />}/>
           <Route path='/menu' element={<Menu />}/>
           <Route path='/specials' element={<SpecialsMenu />}/>
           <Route path='/catering' element={<CateringMenu />}/>
-          <Route path='/signup' element={<Signup setToken={setToken}/>}/>
+          <Route path='/signup' element={<Signup setToken={setToken} />}/>
           <Route path='/login' element={<Login setToken={setToken} />}/>
           <Route path='/shoppingcart' element={<ShoppingCart />}/>
+          <Route path='/checkout' element={<Checkout />}/>
           <Route path='/success' element={<Success />}/>
           <Route path='/cancel' element={<Cancel/>}/>
           <Route path='/error' element={<Error />}/>
@@ -45,6 +49,7 @@ function App() {
     </div>
     <ToastContainer />
     </CartProvider>
+    </AuthProvider>
   );
 }
 

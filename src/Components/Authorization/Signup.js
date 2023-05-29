@@ -22,17 +22,18 @@ function Signup({ setToken }) {
       const response = await axios.post("http://localhost:8080/users/signup", {
         name: name,
         email: email,
-        password: password
-      })
+        password: password,
+      });
 
-      //Set token from response using useToken hook
+      // Set token from response
       const { token } = response.data;
+
+      // Set the token using the setToken function
       setToken(token);
 
       // Takes user to shopping cart once signed up
       navigate("/shoppingcart");
     } catch (error) {
-      //redo - better handle error with toast error
       console.error("Signup error:", error);
     }
   };
@@ -90,5 +91,6 @@ Signup.propTypes = {
 };
 
 export default Signup;
+
 
 
