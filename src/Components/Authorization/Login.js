@@ -10,7 +10,6 @@ import "react-toastify/dist/ReactToastify.css";
 
 function Login() {
   const { state, dispatch } = useContext(AuthContext);
-  const isAuthenticated = state.isAuthenticated; // Define isAuthenticated variable
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -30,15 +29,19 @@ function Login() {
           "Content-Type": "application/json"
         }
       });
-  
-      dispatch({ type: 'LOGIN', payload: {
-        email: email,
-        password: password,
-        user: response.data.user,
-        token: response.data.token,
-      } });
+
+      dispatch({ 
+        type: 'LOGIN', 
+        payload: {
+          email: email,
+          password: password,
+          user: response.data.user,
+          token: response.data.token,
+        } 
+      });
   
       navigate("/shoppingcart");
+
   
     } catch (error) {
       console.error("Login error:", error);
@@ -49,12 +52,15 @@ function Login() {
   };
 
   useEffect(() => {
+    const isAuthenticated = state.isAuthenticated;
+  
     if (isAuthenticated) {
       navigate("/shoppingcart");
+    } else {
+      console.log("User is not authenticated");
     }
-  }, [isAuthenticated]);
+  }, [navigate,state.isAuthenticated]);
   
-   
   
   return (
     <div className="login-page">

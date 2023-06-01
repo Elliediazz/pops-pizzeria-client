@@ -1,11 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../AuthContext";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-function Signup({ setToken }) {
+function Signup() {
+  const { state, dispatch } = useContext(AuthContext);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -23,20 +27,39 @@ function Signup({ setToken }) {
         name: name,
         email: email,
         password: password,
+      },{
+        headers: {
+          "Content-Type": "application/json"
+        }
       });
 
-      // Set token from response
-      const { token } = response.data;
+      dispatch({ 
+        type: 'LOGIN', 
+        payload: {
+          email: email,
+          password: password,
+          user: response.data.user,
+          token: response.data.token,
+        } 
+      });
 
-      // Set the token using the setToken function
-      setToken(token);
-
-      // Takes user to shopping cart once signed up
       navigate("/shoppingcart");
     } catch (error) {
       console.error("Signup error:", error);
+      toast.error("Incorrect username or password", {
+        position: toast.POSITION.TOP_CENTER,
+      });
     }
   };
+  useEffect(() => {
+    const isAuthenticated = state.isAuthenticated;
+  
+    if (isAuthenticated) {
+      navigate("/shoppingcart");
+    } else {
+      console.log("User is not authenticated");
+    }
+  }, [navigate, state.isAuthenticated]);
 
   return (
     <div className="signup-page">
@@ -73,7 +96,7 @@ function Signup({ setToken }) {
           <a href="#!">Forgot password?</a>
         </div>
         <br />
-        <Button block size="lg" type="submit" disabled={!validateForm()}>
+        <Button block="true" size="lg" type="submit" disabled={!validateForm()}>
           Signup
         </Button>
         <div className="text-center">

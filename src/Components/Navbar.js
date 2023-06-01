@@ -1,8 +1,6 @@
 import React, { useState, useContext } from 'react';
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Button, Container, Navbar, Nav, Modal } from 'react-bootstrap';
-import { toast } from "react-toastify";
 import '../Styling/Components.css';
 import logo from '../Components/Assets/PopsLogo.png';
 import { IoCartOutline } from 'react-icons/io5';
@@ -18,52 +16,20 @@ function NavBar() {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
+  
   console.log(state.isAuthenticated)
   console.log(localStorage.getItem("token"))
+  console.log(localStorage.getItem("user"))
+
 
   const itemsCount = cart.items.reduce((sum, item) => sum + item.quantity, 0);
 
-  const handleLogout = async (e) => {
-    e.preventDefault();
-    try {
-      // Send logout request to the server
-      const token = localStorage.getItem("token");
-      const response = await axios.post(
-        "http://localhost:8080/users/logout",
-        null,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-  
-      // Handle the response
-      console.log(response.data);
-  
-      // Dispatch the LOGOUT action asynchronously
-      dispatchLogout();
-  
-      navigate("/shoppingcart");
-    } catch (error) {
-      console.error("Logout error:", error);
-      toast.error("Logout failed", {
-        position: toast.POSITION.TOP_CENTER,
-      });
-    }
+  const handleLogout = () => {
+    dispatch({ type: 'LOGOUT' });
+    setShow(false);
+    dispatch({ type: 'SET_AUTHENTICATED', payload: false }); // Update isAuthenticated
+    navigate('/');
   };
-  
-  // Define a separate dispatch function to handle the logout action asynchronously
-  const dispatchLogout = async () => {
-    try {
-      await dispatch({ type: "LOGOUT" });
-      navigate("/login");
-    } catch (error) {
-      console.error("Dispatch logout error:", error);
-    }
-  };
-  
 
   return (
     <div className="navbar-container">
@@ -93,6 +59,22 @@ function NavBar() {
             </Nav>
           </Navbar.Collapse>
           <div className="icons" id="cart">
+            {state.isAuthenticated ? (
+              <div>
+                <Nav.Link className="navbar-brand logout" onClick={handleLogout} style={{ color: '#3f1503', fontFamily: 'Helvetica' }}
+                  >Logout
+                </Nav.Link>
+              </div>
+              ) : (
+              <div className='auth-btn'>
+                <Nav.Link className="navbar-brand logout" href="/login" style={{ color: '#3f1503', fontFamily: 'Helvetica' }}
+                  >Login
+                </Nav.Link>
+                <Nav.Link className="navbar-brand logout" href="/signup" style={{ color: '#3f1503', fontFamily: 'Helvetica' }}
+                  >Signup
+                </Nav.Link>
+              </div>
+              )}
             <Button
               onClick={handleShow}
               style={{ color: '#3f1503', background: 'transparent', border: 'none' }}>
@@ -101,17 +83,6 @@ function NavBar() {
             <span className="bag-quantity">
               <span>{itemsCount}</span>
             </span>
-            {state.isAuthenticated ? (
-              <div>
-                <Nav.Link className="navbar-brand logout" onClick={handleLogout} style={{ color: '#3f1503', fontFamily: 'Helvetica' }}
-                  >Logout
-                </Nav.Link>
-              </div>
-              ) : (
-                <Nav.Link className="navbar-brand logout" href="/login" style={{ color: '#3f1503', fontFamily: 'Helvetica' }}
-                  >Login
-                </Nav.Link>
-              )}
           </div>
         </Container>
       </Navbar>
@@ -153,7 +124,7 @@ function NavBar() {
                   <Button variant="success" href="/menu">
                     Order Now
                   </Button>
-                  <Button className="navbar-brand logout" onClick={handleLogout} variant="success">
+                  <Button variant="success" className="logout" onClick={handleLogout} >
                     Logout
                   </Button>
                 </div>
@@ -171,4 +142,3 @@ function NavBar() {
 }
 
 export default NavBar;
-

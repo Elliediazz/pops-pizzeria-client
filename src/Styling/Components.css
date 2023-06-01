@@ -71,6 +71,10 @@
     }
 }
 
+.auth-btn{
+    display: flex;
+}
+
 /* Error Page */
 .error-page{
     display: flex;

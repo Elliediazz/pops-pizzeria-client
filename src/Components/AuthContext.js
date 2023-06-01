@@ -19,8 +19,7 @@ const reducer = async (state, action) => {
         const response = await axios.post("http://localhost:8080/users/login", {
           email,
           password,
-        },
-        { withCredentials: true });
+        });
 
         const { user, token } = response.data;
         localStorage.setItem("user", JSON.stringify(user));
@@ -40,19 +39,17 @@ const reducer = async (state, action) => {
     case "LOGOUT":
       try {
         const token = localStorage.getItem("token");
-        await axios.post("http://localhost:8080/users/logout", null, { 
+        await axios.post("http://localhost:8080/users/logout", null, {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: token,
           },
-          withCredentials: true });
-        
+        });
       } catch (error) {
         console.error("Logout error:", error);
       }
 
-      // Clear the user and token from local storage or state
-      localStorage.removeItem("user");
-      localStorage.removeItem("token");
+      localStorage.clear();
+
       return {
         ...state,
         isAuthenticated: false,
@@ -60,18 +57,20 @@ const reducer = async (state, action) => {
         token: null,
       };
 
+      
     default:
       return state;
   }
+      
 };
 
 
-function AuthProvider({ children }) {
+function AuthProvider(props) {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   return (
     <AuthContext.Provider value={{ state, dispatch }}>
-      {children}
+      {props.children}
     </AuthContext.Provider>
   );
 }
