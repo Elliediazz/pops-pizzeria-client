@@ -90,16 +90,16 @@ function CartProvider({ children }) {
 
   async function getTotalCost() {
     let totalCost = 0;
-
+  
     for (const cartContent of cartItems) {
       const itemData = await getItemData(cartContent._id);
       if (itemData !== null) {
         totalCost += itemData.price * cartContent.quantity;
       }
     }
-
+  
     return totalCost;
-  }
+  }  
 
   async function getCartItems() {
     let cartItems = [];
@@ -128,10 +128,11 @@ function CartProvider({ children }) {
         return data;
       }
     } catch (error) {
-      console.error('error getting menu items',error);
+      console.error('Error getting menu items', error);
       return null;
     }
   }
+  
 
   const contextValue = {
     items: cartItems,

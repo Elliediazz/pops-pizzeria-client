@@ -5,7 +5,7 @@ import '../Styling/Components.css';
 import logo from '../Components/Assets/PopsLogo.png';
 import { IoCartOutline } from 'react-icons/io5';
 import { CartContext } from '../CartContext';
-import { AuthContext } from './AuthContext';
+import { AuthContext } from '../AuthContext';
 import CartTotal from './CartTotal';
 import CartItems from './CartItems';
 
@@ -59,6 +59,14 @@ function NavBar() {
             </Nav>
           </Navbar.Collapse>
           <div className="icons" id="cart">
+            <Button
+              onClick={handleShow}
+              style={{ color: '#3f1503', background: 'transparent', border: 'none', padding:'0px' }}>
+              <IoCartOutline size="40px" />
+            </Button>
+            <span className="bag-quantity">
+              <span>{itemsCount}</span>
+            </span>
             {state.isAuthenticated ? (
               <div>
                 <Nav.Link className="navbar-brand logout" onClick={handleLogout} style={{ color: '#3f1503', fontFamily: 'Helvetica' }}
@@ -67,22 +75,14 @@ function NavBar() {
               </div>
               ) : (
               <div className='auth-btn'>
-                <Nav.Link className="navbar-brand logout" href="/login" style={{ color: '#3f1503', fontFamily: 'Helvetica' }}
+                <Nav.Link className="navbar-brand login" href="/login" style={{ color: '#3f1503', fontFamily: 'Helvetica' }}
                   >Login
                 </Nav.Link>
-                <Nav.Link className="navbar-brand logout" href="/signup" style={{ color: '#3f1503', fontFamily: 'Helvetica' }}
+                <Nav.Link className="navbar-brand login" href="/signup" style={{ color: '#3f1503', fontFamily: 'Helvetica' }}
                   >Signup
                 </Nav.Link>
               </div>
               )}
-            <Button
-              onClick={handleShow}
-              style={{ color: '#3f1503', background: 'transparent', border: 'none' }}>
-              <IoCartOutline size="40px" />
-            </Button>
-            <span className="bag-quantity">
-              <span>{itemsCount}</span>
-            </span>
           </div>
         </Container>
       </Navbar>

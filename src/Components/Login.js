@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import axios from "axios";
-import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../AuthContext";
 import Form from "react-bootstrap/Form";
@@ -8,60 +7,45 @@ import Button from "react-bootstrap/Button";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-function Login() {
-  const { state, dispatch } = useContext(AuthContext);
+const Login = () => {
+  const { dispatch } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  function validateForm() {
+  const validateForm = () => {
     return email.length > 0 && password.length > 0;
-  }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post("http://localhost:8080/users/login", {
-        email: email,
-        password: password,
-      },{
-        headers: {
-          "Content-Type": "application/json"
-        }
+        email,
+        password,
       });
 
-      dispatch({ 
-        type: 'LOGIN', 
+      dispatch({
+        type: "LOGIN_SUCCESS",
         payload: {
-          email: email,
-          password: password,
           user: response.data.user,
           token: response.data.token,
-        } 
+        },
       });
-  
-      navigate("/shoppingcart");
 
-  
+      navigate("/shoppingcart");
     } catch (error) {
       console.error("Login error:", error);
       toast.error("Incorrect username or password", {
         position: toast.POSITION.TOP_CENTER,
       });
+
+      dispatch({ 
+        type: 'LOGIN_FAILURE',
+      });
     }
   };
 
-  useEffect(() => {
-    const isAuthenticated = state.isAuthenticated;
-  
-    if (isAuthenticated) {
-      navigate("/shoppingcart");
-    } else {
-      console.log("User is not authenticated");
-    }
-  }, [navigate,state.isAuthenticated]);
-  
-  
   return (
     <div className="login-page">
       <Form onSubmit={handleSubmit}>
@@ -87,7 +71,7 @@ function Login() {
           <a href="#!">Forgot password?</a>
         </div>
         <br />
-        <Button block="true" size="lg" type="submit" disabled={!validateForm()}>
+        <Button block='true' size="lg" type="submit" disabled={!validateForm()}>
           Login
         </Button>
 
@@ -99,10 +83,7 @@ function Login() {
       </Form>
     </div>
   );
-}
-
-Login.propTypes = {
-  setToken: PropTypes.func.isRequired,
 };
 
 export default Login;
+

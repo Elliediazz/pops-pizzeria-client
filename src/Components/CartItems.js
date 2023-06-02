@@ -31,9 +31,9 @@ function CartItems(props) {
     <div className='cart-items'>
       {/* <img src={itemData.img}></img> */}
       <img className="cart-img" src={menuimg} alt={itemData.name} />
-      <Form as={Row}>                  
+      <Form as={Row} className="justify-content-center">                  
         <Form.Label column="true" sm="6"><h3>{itemData.name}</h3></Form.Label>
-        <Row sm="6" className="align-items-center">
+        <Row sm="6" className="justify-content-center">
           <Button sm="3" onClick={() => cart.addOneToCart(_id)} variant="outline-dark" className="mx-2 btn-sm">+</Button>
           <h3 className="text-center">{quantity}</h3>
           <Button sm="3" onClick={() => cart.removeOneFromCart(_id)} variant="outline-dark" className="mx-2 btn-sm">-</Button>

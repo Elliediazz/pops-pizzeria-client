@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
-import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../AuthContext";
 import Form from "react-bootstrap/Form";
@@ -9,7 +8,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function Signup() {
-  const { state, dispatch } = useContext(AuthContext);
+  const { dispatch } = useContext(AuthContext);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -22,44 +21,32 @@ function Signup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // Send signup request to the server
-      const response = await axios.post("http://localhost:8080/users/signup", {
-        name: name,
-        email: email,
-        password: password,
-      },{
-        headers: {
-          "Content-Type": "application/json"
-        }
-      });
-
-      dispatch({ 
-        type: 'LOGIN', 
-        payload: {
+      const response = await axios.post("http://localhost:8080/users/signup",{
+          name: name,
           email: email,
           password: password,
+        });
+
+      dispatch({
+        type: "LOGIN_SUCCESS",
+        payload: {
           user: response.data.user,
           token: response.data.token,
-        } 
+        },
       });
 
       navigate("/shoppingcart");
     } catch (error) {
       console.error("Signup error:", error);
-      toast.error("Incorrect username or password", {
+      toast.error("Failed to sign up. Please try again.", {
         position: toast.POSITION.TOP_CENTER,
+      });
+
+      dispatch({ 
+        type: 'LOGIN_FAILURE',
       });
     }
   };
-  useEffect(() => {
-    const isAuthenticated = state.isAuthenticated;
-  
-    if (isAuthenticated) {
-      navigate("/shoppingcart");
-    } else {
-      console.log("User is not authenticated");
-    }
-  }, [navigate, state.isAuthenticated]);
 
   return (
     <div className="signup-page">
@@ -109,11 +96,5 @@ function Signup() {
   );
 }
 
-Signup.propTypes = {
-  setToken: PropTypes.func.isRequired,
-};
-
 export default Signup;
-
-
 
