@@ -1,4 +1,7 @@
-import React, { createContext, useReducer } from "react";
+import React, { createContext, useReducer, useEffect } from "react";
+import axios from "axios";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const AuthContext = createContext();
 
@@ -14,7 +17,7 @@ const reducer = (state, action) => {
     case "LOGIN_SUCCESS":
       const { user, token } = action.payload;
       localStorage.setItem("user", JSON.stringify(user));
-      localStorage.setItem("token", JSON.stringify(token));
+      localStorage.setItem("token", token);
       return {
         ...state,
         isAuthenticated: true,
@@ -29,8 +32,20 @@ const reducer = (state, action) => {
         user: null,
       };
     case "LOGOUT":
-      localStorage.removeItem("user");
-      localStorage.removeItem("token");
+      axios.post("http://localhost:8080/users/logout", null, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      })
+      .then(response => {
+        localStorage.removeItem("user");
+        localStorage.removeItem("token");
+      })
+      .catch(error => {
+        toast.error("Unable to Logout, please try again.", {
+          position: toast.POSITION.TOP_CENTER,
+        });
+      });
       return {
         ...state,
         isAuthenticated: false,
@@ -43,7 +58,35 @@ const reducer = (state, action) => {
 };
 
 const AuthProvider = (props) => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [state, dispatch] = useReducer(reducer, initialState); 
+
+  useEffect(() => {
+    const checkTokenValidity = async () => {
+      const token = localStorage.getItem("token");
+      if (token) {
+        try {
+          await axios.get("http://localhost:8080/users/profile", {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+        } catch (error) {
+          //Invalid token
+          dispatch({ type: 'LOGOUT' });
+        }
+      } else {
+        //Token not found
+        return {
+          ...state,
+          isAuthenticated: false,
+          token: null,
+          user: null,
+        };
+      }
+    };
+
+    checkTokenValidity();
+  }, [state]);
 
   return (
     <AuthContext.Provider value={{ state, dispatch }}>
@@ -53,4 +96,3 @@ const AuthProvider = (props) => {
 };
 
 export default AuthProvider;
-

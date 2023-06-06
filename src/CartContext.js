@@ -1,4 +1,5 @@
 import React, { createContext, useState, useEffect } from "react";
+import axios from "axios";
 
 export const CartContext = createContext({
   items: [],
@@ -8,7 +9,7 @@ export const CartContext = createContext({
   deleteFromCart: () => {},
   getTotalCost: () => {},
   getCartItems: () => {},
-  getItemData: () => {}
+  getItemData: () => {},
 });
 
 function CartProvider({ children }) {
@@ -19,18 +20,18 @@ function CartProvider({ children }) {
   const [menuData, setMenuData] = useState([]);
 
   useEffect(() => {
-    async function fetchData() {
+    const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:8080/menu/all");
-        if (!response.ok) {
+        const response = await axios.get("http://localhost:8080/menu/all");
+        if (response.status !== 200) {
           throw new Error("Failed to fetch menu");
         }
-        const data = await response.json();
+        const data = response.data;
         setMenuData(data);
       } catch (error) {
         console.error(error);
       }
-    }
+    };
     fetchData();
   }, []);
 
@@ -90,16 +91,16 @@ function CartProvider({ children }) {
 
   async function getTotalCost() {
     let totalCost = 0;
-  
+
     for (const cartContent of cartItems) {
       const itemData = await getItemData(cartContent._id);
       if (itemData !== null) {
         totalCost += itemData.price * cartContent.quantity;
       }
     }
-  
+
     return totalCost;
-  }  
+  }
 
   async function getCartItems() {
     let cartItems = [];
@@ -107,7 +108,7 @@ function CartProvider({ children }) {
     for (const cartContent of cartItems) {
       const itemData = await getItemData(cartContent._id);
       if (itemData !== null) {
-        cartItems.push(itemData.name)
+        cartItems.push(itemData.name);
       }
     }
 
@@ -120,19 +121,18 @@ function CartProvider({ children }) {
       if (item) {
         return item;
       } else {
-        const response = await fetch(`http://localhost:8080/menu/${_id}`);
-        if (!response.ok) {
+        const response = await axios.get(`http://localhost:8080/menu/${_id}`);
+        if (response.status !== 200) {
           throw new Error(`Failed to fetch item data for ID ${_id}`);
         }
-        const data = await response.json();
+        const data = response.data;
         return data;
       }
     } catch (error) {
-      console.error('Error getting menu items', error);
+      console.error("Error getting menu items", error);
       return null;
     }
   }
-  
 
   const contextValue = {
     items: cartItems,
@@ -142,7 +142,7 @@ function CartProvider({ children }) {
     deleteFromCart,
     getTotalCost,
     getCartItems,
-    getItemData
+    getItemData,
   };
 
   return (

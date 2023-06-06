@@ -17,17 +17,23 @@ function NavBar() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   
-  console.log(state.isAuthenticated)
-  console.log(localStorage.getItem("token"))
-  console.log(localStorage.getItem("user"))
+  // const userString = localStorage.getItem("user");
+  // if (userString) {
+  //   const user = JSON.parse(userString);
+  //   console.log(user.name); // Accessing the "name" property
+  //   console.log(user.email); // Accessing the "email" property
+  // }
 
+  console.log(state.isAuthenticated)
+  console.log(localStorage.getItem('token'))
+  console.log(localStorage.getItem('user'))
 
   const itemsCount = cart.items.reduce((sum, item) => sum + item.quantity, 0);
 
-  const handleLogout = () => {
+  const handleLogout = () => { 
     dispatch({ type: 'LOGOUT' });
     setShow(false);
-    dispatch({ type: 'SET_AUTHENTICATED', payload: false }); // Update isAuthenticated
+    dispatch({ type: 'SET_AUTHENTICATED', payload: false });
     navigate('/');
   };
 
@@ -103,12 +109,15 @@ function NavBar() {
               </h1>
               {state.isAuthenticated ? (
                 <div>
-                  <Button variant="success" className="logout-btn" href="/checkout">
+                  <Button variant="success" className="cart-btn" href="/shoppingcart">
+                    My Cart
+                  </Button>
+                  <Button variant="success" className="cart-btn" href="/checkout">
                     Checkout
                   </Button>
-                  <Button className="logout-btn" onClick={handleLogout} variant="success">
+                  {/* <Button className="logout-btn" onClick={handleLogout} variant="success">
                     Logout
-                  </Button>
+                  </Button> */}
               </div>
               ) : (
                 <Button variant="success" className="logout-btn" href="/login">

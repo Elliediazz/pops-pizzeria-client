@@ -83,6 +83,9 @@
 .auth-btn{
     display: flex;
 }
+.cart-btn{
+    margin: 5px;
+}
 
 /* Error Page */
 .error-page{
@@ -578,9 +581,6 @@ p {
     flex-direction: row;
     justify-content: space-between;
     padding-top: 10px;
-}
-.logout-btn{
-    margin: 5px;
 }
 
 /* Login */
