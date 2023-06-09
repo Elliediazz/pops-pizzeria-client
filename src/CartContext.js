@@ -1,11 +1,13 @@
 import React, { createContext, useState, useEffect } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const CartContext = createContext({
   items: [],
   getItemQuantity: () => {},
   addOneToCart: () => {},
-  removeOneToCart: () => {},
+  removeOneFromCart: () => {},
   deleteFromCart: () => {},
   getTotalCost: () => {},
   getCartItems: () => {},
@@ -29,7 +31,9 @@ function CartProvider({ children }) {
         const data = response.data;
         setMenuData(data);
       } catch (error) {
-        console.error(error);
+        toast.error("Failed to fetch menu", {
+          position: toast.POSITION.TOP_CENTER,
+        });
       }
     };
     fetchData();
@@ -91,16 +95,22 @@ function CartProvider({ children }) {
 
   async function getTotalCost() {
     let totalCost = 0;
-
-    for (const cartContent of cartItems) {
-      const itemData = await getItemData(cartContent._id);
+  
+    const itemDataPromises = cartItems.map((cartContent) =>
+      getItemData(cartContent._id)
+    );
+  
+    const itemDataArray = await Promise.all(itemDataPromises);
+  
+    for (let i = 0; i < itemDataArray.length; i++) {
+      const itemData = itemDataArray[i];
       if (itemData !== null) {
-        totalCost += itemData.price * cartContent.quantity;
+        totalCost += itemData.price * cartItems[i].quantity;
       }
     }
-
+  
     return totalCost;
-  }
+  }  
 
   async function getCartItems() {
     let cartItems = [];
@@ -129,7 +139,9 @@ function CartProvider({ children }) {
         return data;
       }
     } catch (error) {
-      console.error("Error getting menu items", error);
+      toast.error(`Failed to fetch item data for ID ${_id}`, {
+        position: toast.POSITION.TOP_CENTER,
+      });
       return null;
     }
   }

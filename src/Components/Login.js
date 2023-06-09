@@ -35,7 +35,6 @@ const Login = () => {
 
       navigate("/shoppingcart");
     } catch (error) {
-      console.error("Login error:", error);
       toast.error("Incorrect username or password", {
         position: toast.POSITION.TOP_CENTER,
       });

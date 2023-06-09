@@ -7,7 +7,7 @@ import { IoCartOutline } from 'react-icons/io5';
 import { CartContext } from '../CartContext';
 import { AuthContext } from '../AuthContext';
 import CartTotal from './CartTotal';
-import CartItems from './CartItems';
+import ModalCartItems from './ModalCartItems';
 
 function NavBar() {
   const navigate = useNavigate();
@@ -24,9 +24,9 @@ function NavBar() {
   //   console.log(user.email); // Accessing the "email" property
   // }
 
-  console.log(state.isAuthenticated)
-  console.log(localStorage.getItem('token'))
-  console.log(localStorage.getItem('user'))
+  // console.log(state.isAuthenticated)
+  // console.log(localStorage.getItem('token'))
+  // console.log(localStorage.getItem('user'))
 
   const itemsCount = cart.items.reduce((sum, item) => sum + item.quantity, 0);
 
@@ -102,25 +102,22 @@ function NavBar() {
           {itemsCount > 0 ? (
             <div className="align-items-center">
               {cart.items.map((currentItem, index) => (
-                <CartItems key={index} _id={currentItem._id} quantity={currentItem.quantity} />
+                <ModalCartItems key={index} _id={currentItem._id} quantity={currentItem.quantity} />
               ))}
-              <h1>
-                <CartTotal />
+              <h1 className='subtotal'>
+                Subtotal: <CartTotal />
               </h1>
               {state.isAuthenticated ? (
                 <div>
-                  <Button variant="success" className="cart-btn" href="/shoppingcart">
+                  <Button variant="primary" className="cart-btn" href="/shoppingcart">
                     My Cart
                   </Button>
-                  <Button variant="success" className="cart-btn" href="/checkout">
+                  <Button variant="primary" className="cart-btn" href="/checkout">
                     Checkout
                   </Button>
-                  {/* <Button className="logout-btn" onClick={handleLogout} variant="success">
-                    Logout
-                  </Button> */}
-              </div>
+                </div>
               ) : (
-                <Button variant="success" className="logout-btn" href="/login">
+                <Button variant="primary" className="logout-btn" href="/login">
                   Login to Checkout
                 </Button>
               )}
@@ -130,15 +127,15 @@ function NavBar() {
               <h5>Your cart is currently empty</h5>
               {state.isAuthenticated ? (
                 <div>
-                  <Button variant="success" href="/menu">
+                  <Button variant="primary" href="/menu">
                     Order Now
                   </Button>
-                  <Button variant="success" className="logout" onClick={handleLogout} >
+                  <Button variant="primary" className="logout" onClick={handleLogout} >
                     Logout
                   </Button>
                 </div>
               ) : (
-                <Button variant="success" href="/login">
+                <Button variant="primary" href="/login">
                   Login to Order
                 </Button>
               )}

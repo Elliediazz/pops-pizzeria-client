@@ -86,6 +86,30 @@
 .cart-btn{
     margin: 5px;
 }
+.subtotal{
+    display: flex;
+}
+.formatted-total{
+    margin-left: 10px
+}
+
+/* Modal Cart */
+.modal-cart-items{
+    display: flex;
+    align-items: center;
+}
+.modal-cart-img{
+    height: 200px;
+    width: 200px;
+    margin: 10px
+}
+.modal-form{
+    width: 200px;
+    margin: 10px;
+}
+.modal-lable{
+    width: 200px;
+}
 
 /* Error Page */
 .error-page{
@@ -552,37 +576,79 @@ p {
 }
 
 /* Shopping cart */
-.shopping-cart{
-    margin-top:100px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.cart-items{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 15px;
-}
-.cart-img{
-    height: 250px;
-    width: 250px;
-}
-.checkout-btn{
-    display: flex;
-    align-items: center;
-    margin-left: 15px;
-}
-.total-checkout-container{
+.shopping-cart-container {
     width: 100%;
-    border-top: #0C0C1E solid;
+}
+.shopping-cart {
+    padding-top: 150px;
     display: flex;
-    align-self: center;
+    align-items: center;
+  }
+.shopping-cart-body {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+}
+  
+.card-container{
+    width: 60%;
+}
+.card-header{
+    border-bottom: #000000 solid;
+    margin: 15px;
+    display: flex;
+    justify-content: left;
+}
+.card{
+    margin: 10px;
+}
+
+.cart-img {
+    height: 70%;
+    width: 75%;
+    border-radius: 10px;
+}
+.items-form {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+
+}
+.cart-quantity{
+    display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
+    border: #0c0c1e solid;
+    border-radius: 5px;
+}
+  
+.taxes {
+    color: #d4c7c7;
+}
+.summary-container{
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+}
+  
+.total-checkout-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    border-top: #0c0c1e solid;
     padding-top: 10px;
 }
 
+.card-img{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+  
 /* Login */
 .login-page{
     margin-top: 150px;

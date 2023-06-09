@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Button, Form, Row } from 'react-bootstrap';
+import { Button, Form, Col } from 'react-bootstrap';
 import { CartContext } from '../CartContext';
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import menuimg from './Assets/vodkapasta.jpg';
 
@@ -15,7 +17,9 @@ function CartItems(props) {
         const data = await cart.getItemData(_id);
         setItemData(data);
       } catch (error) {
-        console.error(error);
+        toast.error("Error getting item data", {
+          position: toast.POSITION.TOP_CENTER,
+        });
       }
     }
 
@@ -28,22 +32,35 @@ function CartItems(props) {
   }
 
   return (
-    <div className='cart-items'>
-      {/* <img src={itemData.img}></img> */}
-      <img className="cart-img" src={menuimg} alt={itemData.name} />
-      <Form as={Row} className="justify-content-center">                  
-        <Form.Label column="true" sm="6"><h3>{itemData.name}</h3></Form.Label>
-        <Row sm="6" className="justify-content-center">
-          <Button sm="3" onClick={() => cart.addOneToCart(_id)} variant="outline-dark" className="mx-2 btn-sm">+</Button>
-          <h3 className="text-center">{quantity}</h3>
-          <Button sm="3" onClick={() => cart.removeOneFromCart(_id)} variant="outline-dark" className="mx-2 btn-sm">-</Button>
-        </Row>
+  <div>
+    <Form as={Col} className="justify-content-center items-form" style={{ height: '200px' }}>
+      <Col sm={3} className="cart-img-div" >
+        <img className="cart-img" src={menuimg} alt={itemData.name} />
+      </Col>
+      <Col sm={3} className="align-items-center">
+        <div>
+          <h3>{itemData.name}</h3>
+          <Button size="sm" variant='danger' onClick={() => cart.deleteFromCart(_id)}>Remove</Button>
+        </div>
+      </Col>
+      <Col sm={2} className="align-items-center">
         <p>${(itemData.price).toFixed(2)}</p>
-        {/* <p>${(quantity * itemData.price).toFixed(2)}</p> */}
-        <Button size="sm" variant='danger' onClick={() => cart.deleteFromCart(_id)}>Remove</Button>
-      </Form> 
-    </div>
+      </Col>
+      <Col sm={2} className="align-items-center">
+        <div className='cart-quantity'>
+          <Button onClick={() => cart.addOneToCart(_id)} variant="transparent" >+</Button>
+          <h3>{quantity}</h3>
+          <Button onClick={() => cart.removeOneFromCart(_id)} variant="transparent">-</Button>
+        </div>
+      </Col>
+      <Col sm={2} className="align-items-center">
+        <p>${(quantity * itemData.price).toFixed(2)}</p>
+      </Col>
+    </Form> 
+  </div>
+
   );
+  
 }
 
 export default CartItems;

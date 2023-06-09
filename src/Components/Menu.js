@@ -1,6 +1,8 @@
 import { useContext, useEffect, useState } from 'react';
 import { Card, Button, Container, Row, Col, Form } from 'react-bootstrap';
 import { CartContext } from '../CartContext';
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import menuimg from './Assets/vodkapasta.jpg';
 
@@ -18,10 +20,11 @@ function Menu() {
           throw new Error("Failed to fetch menu");
         }
         const data = await response.json();
-        //console.log(data);
         setData(data);
       } catch (error) {
-        console.error(error);
+        toast.error("Error getting Menu", {
+          position: toast.POSITION.TOP_CENTER,
+        });
       } finally {
         setIsLoading(false);
       }
@@ -60,7 +63,7 @@ function Menu() {
                     <>
                         <Form as={Row}>
                           
-                            <Form.Label column="true" sm="6">Items In Cart: {cart.getItemQuantity(menu._id)}</Form.Label>
+                            <Form.Label column="true" sm="6">In Cart: {cart.getItemQuantity(menu._id)}</Form.Label>
                             <Col sm="6">
                                 <Button sm="6" onClick={() => cart.addOneToCart(menu._id)} className="mx-2 btn-dark">+</Button>
                                 <Button sm="6" onClick={() => cart.removeOneFromCart(menu._id)} className="mx-2 btn-dark">-</Button>

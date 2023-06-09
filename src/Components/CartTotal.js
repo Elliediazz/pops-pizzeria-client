@@ -1,5 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { CartContext } from "../CartContext";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function CartTotal() {
   const { getTotalCost } = useContext(CartContext);
@@ -11,7 +13,9 @@ function CartTotal() {
         const cost = await getTotalCost();
         setTotalCost(cost);
       } catch (error) {
-        console.error(error);
+        toast.error("Error getting total cost", {
+          position: toast.POSITION.TOP_CENTER,
+        });
       }
     }
 
@@ -24,8 +28,7 @@ function CartTotal() {
   
   const formattedTotalCost = `$${totalCost.toFixed(2)}`;
 
-  return <div>Total: {formattedTotalCost}</div>;
+  return <div className="formatted-total"> {formattedTotalCost} </div>;
 }
 
 export default CartTotal;
-
