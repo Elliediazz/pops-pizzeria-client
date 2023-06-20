@@ -48,9 +48,9 @@ function CartItems(props) {
       </Col>
       <Col sm={2} className="align-items-center">
         <div className='cart-quantity'>
-          <Button onClick={() => cart.addOneToCart(_id)} variant="transparent" >+</Button>
-          <h3>{quantity}</h3>
           <Button onClick={() => cart.removeOneFromCart(_id)} variant="transparent">-</Button>
+          <h3>{quantity}</h3>
+          <Button onClick={() => cart.addOneToCart(_id)} variant="transparent" >+</Button>
         </div>
       </Col>
       <Col sm={2} className="align-items-center">

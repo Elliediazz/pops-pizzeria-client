@@ -4,10 +4,12 @@ import { Button, Container, Navbar, Nav, Modal } from 'react-bootstrap';
 import '../Styling/Components.css';
 import logo from '../Components/Assets/PopsLogo.png';
 import { IoCartOutline } from 'react-icons/io5';
+import { IoArrowBack } from 'react-icons/io5';
 import { CartContext } from '../CartContext';
 import { AuthContext } from '../AuthContext';
 import CartTotal from './CartTotal';
 import ModalCartItems from './ModalCartItems';
+import CheckoutButton from './CheckoutButton';
 
 function NavBar() {
   const navigate = useNavigate();
@@ -104,17 +106,15 @@ function NavBar() {
               {cart.items.map((currentItem, index) => (
                 <ModalCartItems key={index} _id={currentItem._id} quantity={currentItem.quantity} />
               ))}
-              <h1 className='subtotal'>
+              <h2 className='subtotal'>
                 Subtotal: <CartTotal />
-              </h1>
+              </h2>
               {state.isAuthenticated ? (
-                <div>
-                  <Button variant="primary" className="cart-btn" href="/shoppingcart">
+                <div className="cart-btn">
+                  <Button variant="primary"  href="/shoppingcart">
                     My Cart
                   </Button>
-                  <Button variant="primary" className="cart-btn" href="/checkout">
-                    Checkout
-                  </Button>
+                  <CheckoutButton cartItems = {cart.items}/>
                 </div>
               ) : (
                 <Button variant="primary" className="logout-btn" href="/login">
@@ -126,10 +126,8 @@ function NavBar() {
             <div>
               <h5>Your cart is currently empty</h5>
               {state.isAuthenticated ? (
-                <div>
-                  <Button variant="primary" href="/menu">
-                    Order Now
-                  </Button>
+                <div className='empty-cart-btn'>
+                  <a href="/menu"><IoArrowBack size="20px" /> Start Shopping</a>
                   <Button variant="primary" className="logout" onClick={handleLogout} >
                     Logout
                   </Button>

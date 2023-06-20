@@ -11,7 +11,6 @@ import AuthProvider from './AuthContext';
 import SpecialsMenu from './Components/Specials';
 import CateringMenu from './Components//Catering';
 import ShoppingCart from './Components/ShoppingCart';
-import Checkout from './Components/Checkout';
 import Cancel from './Pages/Cancel'
 import Success from './Pages/Success'
 import Error from './Components/Error'
@@ -41,8 +40,7 @@ function App() {
               <Route path="/catering" element={<CateringMenu />} />
               <Route path="/signup" element={<AuthRoute><Signup setToken={setToken} /></AuthRoute>} />
               <Route path="/login" element={<AuthRoute><Login setToken={setToken} /></AuthRoute>} />
-              <Route path="/shoppingcart" element={<ShoppingCart />} />
-              <Route path="/checkout" element={<ProtectedRoute><Checkout /></ProtectedRoute>} />
+              <Route path="/shoppingcart" element={<ProtectedRoute><ShoppingCart /></ProtectedRoute>} />
               <Route path="/success" element={<Success />} />
               <Route path="/cancel" element={<Cancel />} />
               <Route path="/error" element={<Error />} />

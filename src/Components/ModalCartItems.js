@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Button, Form, Row } from 'react-bootstrap';
 import { CartContext } from '../CartContext';
 
-import menuimg from './Assets/vodkapasta.jpg';
+import menuimg from './Assets/CBRpizza.jpg';
 
 function ModalCartItems (props) {
   const cart = useContext(CartContext);
@@ -36,9 +36,9 @@ function ModalCartItems (props) {
       <Form as={Row} className="justify-content-center modal-form" >                  
         <Form.Label column="true" sm="6" className="modal-lable"><h3>{itemData.name}</h3></Form.Label>
         <Row sm="6" className="justify-content-center">
-          <Button sm="3" onClick={() => cart.addOneToCart(_id)} variant="transparent" className="mx-2 btn-sm"><strong>+</strong></Button>
-          <h3 className="text-center">{quantity}</h3>
           <Button sm="3" onClick={() => cart.removeOneFromCart(_id)} variant="transparent" className="mx-2 btn-sm"><strong>-</strong></Button>
+          <h3 className="text-center">{quantity}</h3>
+          <Button sm="3" onClick={() => cart.addOneToCart(_id)} variant="transparent" className="mx-2 btn-sm"><strong>+</strong></Button>
         </Row>
         {/* <p>${(itemData.price).toFixed(2)}</p> */}
         <p>${(quantity * itemData.price).toFixed(2)}</p>

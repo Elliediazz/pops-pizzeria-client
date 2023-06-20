@@ -1,9 +1,11 @@
 import React, { useContext } from 'react';
 import { Button } from 'react-bootstrap';
+import { IoArrowBack } from 'react-icons/io5';
 import { AuthContext } from '../AuthContext';
 import { CartContext } from '../CartContext';
 import CartItems from './CartItems';
 import CartTotal from './CartTotal';
+import CheckoutButton from './CheckoutButton';
 
 function ShoppingCart() {
   const { state } = useContext(AuthContext);
@@ -26,7 +28,7 @@ function ShoppingCart() {
               <div>
                 <div className="card mb-4">
                   <div className="card-header py-3">
-                    <h5 >Summary</h5>
+                    <h5 >Cart Summary</h5>
                   </div>
                   <div className="card-body">
                     <ul className="list-group list-group-flush">
@@ -36,7 +38,7 @@ function ShoppingCart() {
                       </li>
                       <li className="list-group-item d-flex justify-content-between align-items-center px-0">
                         Tax
-                        <span>???</span>
+                        <span>$0.00</span>
                       </li>
                       <li className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
                         <div>
@@ -49,9 +51,7 @@ function ShoppingCart() {
                     <div className="checkout-btn">
                       {state.isAuthenticated ? (
                         <div>
-                          <Button variant="primary" className="cart-btn" href="/checkout">
-                            Checkout Cart
-                          </Button>
+                          <CheckoutButton cartItems = {cart.items} />
                         </div>
                       ) : (
                         <Button variant="primary" className="logout-btn" href="/login">
@@ -84,10 +84,8 @@ function ShoppingCart() {
       )}
       {itemsCount === 0 && (
         <div className="empty-cart">
-          <h5>Your cart is currently empty</h5>
-          <Button variant="success" href="/menu">
-            Start Shoppng 
-          </Button>
+          <h2>Your cart is currently empty</h2>
+          <a href="/menu"><IoArrowBack size="30px" /> Start Shopping</a>
         </div>
       )}
     </div>

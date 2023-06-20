@@ -55,23 +55,30 @@ function CartProvider({ children }) {
 
   function addOneToCart(_id) {
     const quantity = getItemQuantity(_id);
-
-    if (quantity === 0) {
-      setCartItems([
-        ...cartItems,
+    
+    // Find the item in the menuData array using the _id
+    const item = menuData.find((item) => item._id === _id);
+    console.log(item)
+    if (quantity === 0 && item) {
+      setCartItems((prevCartItems) => [
+        ...prevCartItems,
         {
           _id: _id,
+          name: item.name,
           quantity: 1,
+          price: item.price,
+          image: item.img
         },
       ]);
-    } else {
-      setCartItems(
-        cartItems.map((item) =>
+    } else if (item) {
+      setCartItems((prevCartItems) =>
+        prevCartItems.map((item) =>
           item._id === _id ? { ...item, quantity: item.quantity + 1 } : item
         )
       );
     }
   }
+  
 
   function removeOneFromCart(_id) {
     const quantity = getItemQuantity(_id);
