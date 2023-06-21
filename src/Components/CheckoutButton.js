@@ -7,18 +7,16 @@ import { AuthContext } from '../AuthContext';
 
 const CheckoutButton = ({ cartItems} ) => {
 
-  const { state } = useContext(AuthContext);
-  const { isAuthenticated, user } = state;
+  const { state: { isAuthenticated, user } } = useContext(AuthContext);
   
   //console.log(cartItems);
   
   const handleCheckout = () =>{
     if (isAuthenticated) {
-      const User= JSON.parse(user)
 
       axios.post("http://localhost:8080/stripe/checkout", {
         items: cartItems,
-        userId: User._id,
+        userId: user._id,
       }).then((response)=>{
         if (response.data.url){
           window.location.href= response.data.url

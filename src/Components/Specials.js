@@ -8,14 +8,12 @@ import menuimg from "./Assets/pepperoni.jpg"
 
 function SpecialsMenu() {
   const [data, setData] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [specialSelected, setSpecialSelected] = useState(
-    localStorage.getItem('specialSelected') === 'true'
-  );
-
-  //console.log("special:", specialSelected);
+  const [isLoading, setIsLoading] = useState(true);  
 
   const cart = useContext(CartContext);
+  const { specialSelected } = cart;
+  //console.log("specialSelected:", specialSelected);
+
 
   useEffect(() => {
     async function fetchData() {
@@ -37,9 +35,6 @@ function SpecialsMenu() {
     fetchData();
   }, []);
 
-  useEffect(() => {
-    localStorage.setItem('specialSelected', specialSelected);
-  }, [specialSelected]);
 
   if (isLoading) {
     return <div className='loading'><h1>Loading...</h1></div>;
@@ -55,6 +50,7 @@ function SpecialsMenu() {
   const currentTime = now.getHours() * 60 + now.getMinutes();
 
   // Filter specials based on availability
+  // eslint-disable-next-line 
   const availableSpecials = data.filter((special) => {
     if (special.day && special.day !== currentDay) {
       // Special is only available on a specific day 
@@ -105,7 +101,6 @@ function SpecialsMenu() {
                             variant="danger"
                             onClick={() => {
                               cart.deleteFromCart(specials._id);
-                              setSpecialSelected(false);
                             }}
                             className="my-2"
                           >
@@ -118,9 +113,8 @@ function SpecialsMenu() {
                           className={`btn btn-dark ${specialSelected ? "disabled" : ""}`}
                           onClick={() => {
                             cart.addOneToCart(specials._id);
-                            setSpecialSelected(true);
                           }}
-                          disabled={specialSelected}
+                          disabled={specialSelected !== ""}
                         >
                           {specialSelected ? "Unavailable" : "Add To Cart"}
                         </Button>

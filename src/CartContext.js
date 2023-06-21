@@ -12,13 +12,20 @@ export const CartContext = createContext({
   getTotalCost: () => {},
   getCartItems: () => {},
   getItemData: () => {},
+  specialSelected: ""
 });
 
 function CartProvider({ children }) {
+
   const [cartItems, setCartItems] = useState(() => {
     const storedCartItems = localStorage.getItem("cartItems");
     return storedCartItems ? JSON.parse(storedCartItems) : [];
   });
+  const [specialSelected, setSpecialSelected] = useState(
+    localStorage.getItem('specialSelected') || ''
+  );
+  //console.log("cartSpecial:", specialSelected)
+
   const [menuData, setMenuData] = useState([]);
   const [specialsData, setSpecialsData] = useState([]);
   const combinedData = [...menuData, ...specialsData];
@@ -56,6 +63,10 @@ function CartProvider({ children }) {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
   }, [cartItems]);
 
+  useEffect(() => {
+    localStorage.setItem('specialSelected', specialSelected);
+  }, [specialSelected]);  
+
   function getItemQuantity(_id) {
     const quantity = cartItems.find((item) => item._id === _id)?.quantity;
 
@@ -72,7 +83,6 @@ function CartProvider({ children }) {
     // Find the item in the combinedData array using the _id
     const item = combinedData.find((item) => item._id === _id);
 
-    console.log(item)
     if (quantity === 0 && item) {
       setCartItems((prevCartItems) => [
         ...prevCartItems,
@@ -84,6 +94,10 @@ function CartProvider({ children }) {
           image: item.img
         },
       ]);
+
+      if (specialsData.some((special) => special._id === _id)) {
+        setSpecialSelected(_id);
+      }
     } else if (item) {
       setCartItems((prevCartItems) =>
         prevCartItems.map((item) =>
@@ -92,13 +106,16 @@ function CartProvider({ children }) {
       );
     }
   }
-  
 
   function removeOneFromCart(_id) {
     const quantity = getItemQuantity(_id);
 
     if (quantity === 1) {
       deleteFromCart(_id);
+
+      if (specialSelected === _id) {
+        setSpecialSelected("");
+      }
     } else {
       setCartItems(
         cartItems.map((item) =>
@@ -112,6 +129,10 @@ function CartProvider({ children }) {
     setCartItems((cartItems) =>
       cartItems.filter((currentItem) => currentItem._id !== _id)
     );
+
+    if (specialSelected === _id) {
+      setSpecialSelected("");
+    }
   }
 
   async function getTotalCost() {
@@ -182,6 +203,7 @@ function CartProvider({ children }) {
     getTotalCost,
     getCartItems,
     getItemData,
+    specialSelected,
   };
 
   return (

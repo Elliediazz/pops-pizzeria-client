@@ -18,6 +18,12 @@ const reducer = (state, action) => {
       const { user, token } = action.payload;
       localStorage.setItem("user", JSON.stringify(user));
       localStorage.setItem("token", token);
+
+      for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        const value = localStorage.getItem(key);
+        console.log(`Key: ${key}, Value: ${value}`);
+      }
       return {
         ...state,
         isAuthenticated: true,
@@ -40,6 +46,9 @@ const reducer = (state, action) => {
       .then(response => {
         localStorage.removeItem("user");
         localStorage.removeItem("token");
+        localStorage.removeItem("cartItems");
+        localStorage.removeItem("specialSelected");
+      
       })
       .catch(error => {
         toast.error("Unable to Logout, please try again.", {
