@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;1,6..96,600;1,6..96,800&family=Fira+Sans+Condensed:wght@200;400;600&display=swap');
-
 *{
     font-family: "Bodoni",sans-serif;
 }
@@ -529,13 +527,22 @@ p {
     padding: 10px;
     
 }
-
 .specials-menu{
     margin-top:100px;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+.special-unavailable {
+    opacity: 0.5; /* Adjust the opacity value as desired */
+}
+.unavailable {
+    opacity: 0.5; /* Adjust the opacity value as desired */
+  }
+  
+  .unavailable-block {
+    padding: 10px;
+  }
 
 /*Catering Menu */
 .catering-menu-page{

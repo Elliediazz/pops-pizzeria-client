@@ -20,24 +20,37 @@ function CartProvider({ children }) {
     return storedCartItems ? JSON.parse(storedCartItems) : [];
   });
   const [menuData, setMenuData] = useState([]);
+  const [specialsData, setSpecialsData] = useState([]);
+  const combinedData = [...menuData, ...specialsData];
+
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:8080/menu/all");
-        if (response.status !== 200) {
-          throw new Error("Failed to fetch menu");
+        const [menuResponse, specialsResponse] = await Promise.all([
+          axios.get("http://localhost:8080/menu/all"),
+          axios.get("http://localhost:8080/specials/all")
+        ]);
+  
+        if (menuResponse.status !== 200 || specialsResponse.status !== 200) {
+          throw new Error("Failed to fetch data");
         }
-        const data = response.data;
-        setMenuData(data);
+  
+        const menuData = menuResponse.data;
+        const specialsData = specialsResponse.data;
+  
+        setMenuData(menuData);
+        setSpecialsData(specialsData);
       } catch (error) {
-        toast.error("Failed to fetch menu", {
+        toast.error("Failed to fetch data", {
           position: toast.POSITION.TOP_CENTER,
         });
       }
     };
+  
     fetchData();
   }, []);
+  
 
   useEffect(() => {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
@@ -56,8 +69,9 @@ function CartProvider({ children }) {
   function addOneToCart(_id) {
     const quantity = getItemQuantity(_id);
     
-    // Find the item in the menuData array using the _id
-    const item = menuData.find((item) => item._id === _id);
+    // Find the item in the combinedData array using the _id
+    const item = combinedData.find((item) => item._id === _id);
+
     console.log(item)
     if (quantity === 0 && item) {
       setCartItems((prevCartItems) => [
@@ -134,16 +148,22 @@ function CartProvider({ children }) {
 
   async function getItemData(_id) {
     try {
-      const item = menuData.find((item) => item._id === _id);
+      const combinedData = [...menuData, ...specialsData];
+      const item = combinedData.find((item) => item._id === _id);
+  
       if (item) {
         return item;
       } else {
-        const response = await axios.get(`http://localhost:8080/menu/${_id}`);
-        if (response.status !== 200) {
+        const menuResponse = await axios.get(`http://localhost:8080/menu/${_id}`);
+        const specialsResponse = await axios.get(`http://localhost:8080/specials/${_id}`);
+  
+        if (menuResponse.status === 200) {
+          return menuResponse.data;
+        } else if (specialsResponse.status === 200) {
+          return specialsResponse.data;
+        } else {
           throw new Error(`Failed to fetch item data for ID ${_id}`);
         }
-        const data = response.data;
-        return data;
       }
     } catch (error) {
       toast.error(`Failed to fetch item data for ID ${_id}`, {
@@ -151,7 +171,7 @@ function CartProvider({ children }) {
       });
       return null;
     }
-  }
+  }  
 
   const contextValue = {
     items: cartItems,

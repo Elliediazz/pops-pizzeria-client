@@ -9,12 +9,13 @@ const CheckoutButton = ({ cartItems} ) => {
 
   const { state } = useContext(AuthContext);
   const { isAuthenticated, user } = state;
-  const User= JSON.parse(user)
-
-  console.log(cartItems);
+  
+  //console.log(cartItems);
   
   const handleCheckout = () =>{
     if (isAuthenticated) {
+      const User= JSON.parse(user)
+
       axios.post("http://localhost:8080/stripe/checkout", {
         items: cartItems,
         userId: User._id,
