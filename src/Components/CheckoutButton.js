@@ -14,7 +14,7 @@ const CheckoutButton = ({ cartItems} ) => {
   const handleCheckout = () =>{
     if (isAuthenticated) {
 
-      axios.post("http://localhost:8080/stripe/checkout", {
+      axios.post(process.env.REACT_APP_BACKEND_URL + 'stripe/checkout', {
         items: cartItems,
         userId: user._id,
       }).then((response)=>{

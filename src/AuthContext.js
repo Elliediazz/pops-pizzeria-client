@@ -38,7 +38,7 @@ const reducer = (state, action) => {
         user: null,
       };
     case "LOGOUT":
-      axios.post("http://localhost:8080/users/logout", null, {
+      axios.post(process.env.REACT_APP_BACKEND_URL + 'users/logout', null, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
@@ -74,7 +74,7 @@ const AuthProvider = (props) => {
       const token = localStorage.getItem("token");
       if (token) {
         try {
-          await axios.get("http://localhost:8080/users/profile", {
+          await axios.get(process.env.REACT_APP_BACKEND_URL + 'users/profile', {
             headers: {
               Authorization: `Bearer ${token}`,
             },
