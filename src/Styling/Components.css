@@ -470,7 +470,7 @@ p {
 .loading{
     margin-top: 200px;
 }
-.container{
+.menu-container{
     width: 100%;
     display: flex;
     margin:0;

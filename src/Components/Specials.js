@@ -17,7 +17,7 @@ function SpecialsMenu() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get(process.env.REACT_APP_BACKEND_URL + "specials/all");
+        const response = await axios.get(process.env.REACT_APP_BACKEND_URL + "/specials/all");
         if (response.status !== 200) {
           throw new Error("Failed to fetch specials");
         }
@@ -117,7 +117,10 @@ function SpecialsMenu() {
                         </Button>
                       )
                     ) : (
-                      <Button type="button" className="btn btn-dark disabled">
+                      <Button 
+                      type="button" 
+                      className="btn btn-dark disabled"
+                      >
                         Unavailable
                       </Button>
                     )}

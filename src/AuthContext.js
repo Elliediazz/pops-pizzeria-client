@@ -38,7 +38,7 @@ const reducer = (state, action) => {
         user: null,
       };
     case "LOGOUT":
-      axios.post(process.env.REACT_APP_BACKEND_URL + 'users/logout', null, {
+      axios.post(process.env.REACT_APP_BACKEND_URL + '/users/logout', null, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
