@@ -68,7 +68,7 @@ function SpecialsMenu() {
 
   return (
     <div className="menu-page">
-      <Container className="container">
+      <Container className="menu-container">
         <Row xs={1} sm={2} md={3} className="g-3">
           {data.map((specials, index) => {
             const isAvailable =
@@ -78,8 +78,8 @@ function SpecialsMenu() {
             return (
               <Col key={index}>
                 <Card className={`menu-card ${isAvailable ? "" : "unavailable"}`}>
-                  <div>
-                    <img className="menu-card-img" src={menuimg} alt={specials.name} />
+                  <div className="menu-card-img">
+                    <img src={menuimg} alt={specials.name} />
                   </div>
                   <Card.Body>
                     <div className="title">
