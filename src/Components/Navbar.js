@@ -56,7 +56,7 @@ function NavBar() {
                 SPECIALS
               </Nav.Link>
               <Navbar.Brand className="navbar-brand" href="/" style={{ color: '#3f1503' }}>
-                <img src={logo} alt="Logo" className="logo" id="logo" />
+                <img src={logo} alt="Logo" className="logo" id="mid-display" />
               </Navbar.Brand>
               <Nav.Link className="navbar-brand" href="/catering" style={{ color: '#3f1503', fontFamily: 'Helvetica' }}>
                 CATERING
@@ -64,35 +64,58 @@ function NavBar() {
               <Nav.Link className="navbar-brand" href="/#findus" style={{ color: '#3f1503', fontFamily: 'Helvetica' }}>
                 FIND US
               </Nav.Link>
+                <Nav.Link
+                  href="/shoppingcart"
+                  className="navbar-brand"
+                  id="display"
+                  style={{ color: '#3f1503', fontFamily: 'Helvetica' }}>
+                  CART ({itemsCount})
+                </Nav.Link>
+                {state.isAuthenticated ? (
+                  <div>
+                    <Nav.Link className="navbar-brand logout" id="display" onClick={handleLogout} style={{ color: '#3f1503', fontFamily: 'Helvetica' }}
+                      >Logout
+                    </Nav.Link>
+                  </div>
+                  ) : (
+                  <div >
+                    <Nav.Link className="navbar-brand login" id="display" href="/login" style={{ color: '#3f1503', fontFamily: 'Helvetica' }}
+                      >Login
+                    </Nav.Link>
+                    <Nav.Link className="navbar-brand login" id="display" href="/signup" style={{ color: '#3f1503', fontFamily: 'Helvetica' }}
+                      >Signup
+                    </Nav.Link>
+                  </div>
+                  )}
             </Nav>
           </Navbar.Collapse>
-          <div className="icons" id="cart">
-            <Button
-              onClick={handleShow}
-              style={{ color: '#3f1503', background: 'transparent', border: 'none', padding:'0px' }}>
-              <IoCartOutline size="40px" />
-            </Button>
-            <span className="bag-quantity">
-              <span>{itemsCount}</span>
-            </span>
-            {state.isAuthenticated ? (
-              <div>
-                <Nav.Link className="navbar-brand logout" onClick={handleLogout} style={{ color: '#3f1503', fontFamily: 'Helvetica' }}
-                  >Logout
-                </Nav.Link>
-              </div>
-              ) : (
-              <div className='auth-btn'>
-                <Nav.Link className="navbar-brand login" href="/login" style={{ color: '#3f1503', fontFamily: 'Helvetica' }}
-                  >Login
-                </Nav.Link>
-                <Nav.Link className="navbar-brand login" href="/signup" style={{ color: '#3f1503', fontFamily: 'Helvetica' }}
-                  >Signup
-                </Nav.Link>
-              </div>
-              )}
-          </div>
         </Container>
+        <div className="icons" id="cart">
+          <Button
+            onClick={handleShow}
+            style={{ color: '#3f1503', background: 'transparent', border: 'none', padding:'0px' }}>
+            <IoCartOutline size="40px" />
+          </Button>
+          <span className="bag-quantity">
+            <span>{itemsCount}</span>
+          </span>
+          {state.isAuthenticated ? (
+            <div>
+              <Nav.Link className="navbar-brand logout" onClick={handleLogout} style={{ color: '#3f1503', fontFamily: 'Helvetica' }}
+                >Logout
+              </Nav.Link>
+            </div>
+            ) : (
+            <div className='auth-btn'>
+              <Nav.Link className="navbar-brand login" href="/login" style={{ color: '#3f1503', fontFamily: 'Helvetica' }}
+                >Login
+              </Nav.Link>
+              <Nav.Link className="navbar-brand login" href="/signup" style={{ color: '#3f1503', fontFamily: 'Helvetica' }}
+                >Signup
+              </Nav.Link>
+            </div>
+            )}
+        </div>
       </Navbar>
 
       {/* Modal Cart */}

@@ -18,7 +18,7 @@ function ShoppingCart() {
           <div className='shopping-cart-body'>
             <div className='card-container'>
               <div className="card-header">
-                <h2>Total Items In Cart: {itemsCount}</h2>
+                <h2>Total Items: {itemsCount}</h2>
               </div>
               {cart.items.map((currentItem, index) => (
                 <CartItems key={index} _id={currentItem._id} quantity={currentItem.quantity} />

@@ -67,8 +67,8 @@ function SpecialsMenu() {
   });
 
   return (
-    <div className="menu-page">
-      <Container className="menu-container">
+    <div className="specials-menu-page">
+      <Container className="specials-container">
         <Row xs={1} sm={2} md={3} className="g-3">
           {data.map((specials, index) => {
             const isAvailable =
