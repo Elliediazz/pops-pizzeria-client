@@ -74,6 +74,8 @@ function SpecialsMenu() {
     );
   }
 
+  console.log(selectedOptions)
+
   const now = new Date();
   const currentDay = now.getDay();
   const currentTime = now.getHours() * 60 + now.getMinutes();
@@ -163,7 +165,7 @@ function SpecialsMenu() {
                           className={`btn btn-dark ${specialSelected || !isOptionsSelected ? "disabled" : ""}`}
                           onClick={() => {
                             if (isOptionsSelected) {
-                              cart.addOneToCart(special._id);
+                              cart.addOneToCart(special._id, selectedOptions);
                             }
                           }}
                           disabled={specialSelected !== "" || !isOptionsSelected}

@@ -8,7 +8,7 @@ import menuimg from './Assets/vodkapasta.jpg';
 
 function CartItems(props) {
   const cart = useContext(CartContext);
-  const { _id, quantity } = props;
+  const { _id, quantity, selectedOptions } = props;
   const [itemData, setItemData] = useState();
 
   useEffect(() => {
@@ -40,6 +40,7 @@ function CartItems(props) {
       <Col sm={3} className="align-items-center">
         <div>
           <h3>{itemData.name}</h3>
+          <h3>{selectedOptions}</h3>
           <Button size="sm" variant='danger' onClick={() => cart.deleteFromCart(_id)}>Remove</Button>
         </div>
       </Col>
