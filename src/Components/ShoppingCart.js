@@ -1,5 +1,5 @@
-import React, { useContext } from 'react';
-import { Button } from 'react-bootstrap';
+import React, { useContext, useState } from 'react';
+import { Button, Form } from 'react-bootstrap';
 import { IoArrowBack } from 'react-icons/io5';
 import { AuthContext } from '../AuthContext';
 import { CartContext } from '../CartContext';
@@ -7,10 +7,21 @@ import CartItems from './CartItems';
 import CartTotal from './CartTotal';
 import CheckoutButton from './CheckoutButton';
 
+function sanitizeInput(input) {
+  return input.replace(/[^a-zA-Z0-9 ]/g, '');
+}
+
 function ShoppingCart() {
   const { state } = useContext(AuthContext);
   const cart = useContext(CartContext);
   const itemsCount = cart.items.reduce((sum, item) => sum + item.quantity, 0);
+  const [note, setNote] = useState('');
+
+  const handleNoteChange = (event) => {
+    const sanitizedNote = sanitizeInput(event.target.value);
+    setNote(sanitizedNote);
+  };
+  
   return (
     <div className="shopping-cart-container">
       {itemsCount > 0 && (
@@ -47,6 +58,19 @@ function ShoppingCart() {
                         <span><strong><CartTotal /></strong></span>
                       </li>
                     </ul>
+                    <div className="note-section">
+                      <Form.Group controlId="noteForm">
+                        <Form.Label>Comments:</Form.Label>
+                        <Form.Control
+                          as="textarea"
+                          rows={3}
+                          value={note}
+                          onChange={handleNoteChange}
+                          placeholder="Enter a note..."
+                        />
+                      </Form.Group>
+                    </div>
+                    <br></br>
                     <h6 className='taxes'>Taxes calculated at checkout</h6>
                     <div className="checkout-btn">
                       {state.isAuthenticated ? (

@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import { CartContext } from "../CartContext";
@@ -8,31 +8,55 @@ import "react-toastify/dist/ReactToastify.css";
 import menuimg from "./Assets/pepperoni.jpg";
 
 function SpecialsMenu() {
-  const [data, setData] = useState([]);
+  const [specials, setSpecials] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [selectedOptions, setSelectedOptions] = useState({});
 
   const cart = useContext(CartContext);
   const { specialSelected } = cart;
 
   useEffect(() => {
-    async function fetchData() {
+    async function fetchSpecials() {
       try {
         const response = await axios.get(process.env.REACT_APP_BACKEND_URL + "/specials/all");
         if (response.status !== 200) {
           throw new Error("Failed to fetch specials");
         }
-        const data = await response.data;
-        setData(data);
+        const data = response.data;
+        setSpecials(data);
       } catch (error) {
-        toast.error("Error getting Specials", {
+        toast.error("Error getting specials", {
           position: toast.POSITION.TOP_CENTER,
         });
       } finally {
         setIsLoading(false);
       }
     }
-    fetchData();
+    fetchSpecials();
   }, []);
+
+  const handleOptionChange = (specialId, optionName, selectedValue) => {
+    setSelectedOptions((prevSelectedOptions) => {
+      const updatedOptions = {
+        ...prevSelectedOptions,
+        [specialId]: {
+          ...prevSelectedOptions[specialId],
+          [optionName]: selectedValue,
+        },
+      };
+  
+      if (!selectedValue) {
+        delete updatedOptions[specialId][optionName];
+  
+        if (Object.keys(updatedOptions[specialId]).length === 0) {
+          delete updatedOptions[specialId];
+        }
+      }
+  
+      return updatedOptions;
+    });
+  };
+  
 
   if (isLoading) {
     return (
@@ -42,7 +66,7 @@ function SpecialsMenu() {
     );
   }
 
-  if (data.length === 0) {
+  if (specials.length === 0) {
     return (
       <div className="loading">
         <h1>No items available</h1>
@@ -54,13 +78,21 @@ function SpecialsMenu() {
   const currentDay = now.getDay();
   const currentTime = now.getHours() * 60 + now.getMinutes();
 
-  const availableSpecials = data.filter((special) => {
+  const availableSpecials = specials.filter((special) => {
     if (special.day && special.day !== currentDay) {
       return false;
     }
 
     if (special.startTime && special.endTime && (currentTime < special.startTime || currentTime > special.endTime)) {
       return false;
+    }
+
+    if (special.options && special.options.length > 0) {
+      const areAllOptionsSelected = special.options.every((option) => {
+        const selectedOption = selectedOptions[special._id] && selectedOptions[special._id][option.name];
+        return selectedOption !== undefined && selectedOption !== "";
+      });
+      return areAllOptionsSelected;
     }
 
     return true;
@@ -70,57 +102,77 @@ function SpecialsMenu() {
     <div className="specials-menu-page">
       <Container className="specials-container">
         <Row xs={1} sm={2} md={3} className="g-3">
-          {data.map((specials, index) => {
+          {specials.map((special) => {
             const isAvailable =
-              (!specials.day || specials.day === currentDay) &&
-              (!specials.startTime || !specials.endTime || (currentTime >= specials.startTime && currentTime <= specials.endTime));
+              (!special.day || special.day === currentDay) &&
+              (!special.startTime || !special.endTime || (currentTime >= special.startTime && currentTime <= special.endTime));
+
+            const isOptionsSelected = special.options && special.options.length > 0 ? selectedOptions[special._id] !== undefined : true;
 
             return (
-              <Col key={index}>
+              <Col key={special._id}>
                 <Card className={`menu-card ${isAvailable ? "" : "unavailable"}`}>
                   <div className="menu-card-img">
-                    <img src={menuimg} alt={specials.name} />
+                    <img src={menuimg} alt={special.name} />
                   </div>
                   <Card.Body>
                     <div className="title">
-                      <h1>{specials.name}</h1>
+                      <h1>{special.name}</h1>
                       <div className="description">
-                        <p>{specials.description && specials.description}</p>
+                        <p>{special.description && special.description}</p>
                       </div>
                     </div>
+                    {special.options && special.options.length > 0 && (
+                      <div className="options-dropdowns">
+                        {special.options.map((option, optionIndex) => (
+                          <div className="mb-3" key={optionIndex}>
+                            <label className="form-label">{option.name}</label>
+                            <select
+                              className="form-select"
+                              value={selectedOptions[special._id] && selectedOptions[special._id][option.name]}
+                              onChange={(e) => handleOptionChange(special._id, option.name, e.target.value)}
+                            >
+                              <option value="">Select an option</option>
+                              {option.choices.map((choice, choiceIndex) => (
+                                <option key={choiceIndex} value={choice}>
+                                  {choice}
+                                </option>
+                              ))}
+                            </select>
+                          </div>
+                        ))}
+                      </div>
+                    )}
                     <div className="menu-card-order">
-                      <h5>${specials.price.toFixed(2)}</h5>
+                      <h5>${special.price.toFixed(2)}</h5>
                     </div>
                     {isAvailable ? (
-                      cart.getItemQuantity(specials._id) > 0 ? (
-                        <>
-                          <Button
-                            variant="danger"
-                            onClick={() => {
-                              cart.deleteFromCart(specials._id);
-                            }}
-                            className="my-2"
-                          >
-                            Remove from cart
-                          </Button>
-                        </>
+                      cart.getItemQuantity(special._id) > 0 ? (
+                        <Button
+                          variant="danger"
+                          onClick={() => {
+                            cart.deleteFromCart(special._id);
+                          }}
+                          className="my-2"
+                        >
+                          Remove from cart
+                        </Button>
                       ) : (
                         <Button
                           type="button"
-                          className={`btn btn-dark ${specialSelected ? "disabled" : ""}`}
+                          className={`btn btn-dark ${specialSelected || !isOptionsSelected ? "disabled" : ""}`}
                           onClick={() => {
-                            cart.addOneToCart(specials._id);
+                            if (isOptionsSelected) {
+                              cart.addOneToCart(special._id);
+                            }
                           }}
-                          disabled={specialSelected !== ""}
+                          disabled={specialSelected !== "" || !isOptionsSelected}
                         >
                           {specialSelected ? "Unavailable" : "Add To Cart"}
                         </Button>
                       )
                     ) : (
-                      <Button 
-                      type="button" 
-                      className="btn btn-dark disabled"
-                      >
+                      <Button type="button" className="btn btn-dark disabled">
                         Unavailable
                       </Button>
                     )}
@@ -136,4 +188,3 @@ function SpecialsMenu() {
 }
 
 export default SpecialsMenu;
-
