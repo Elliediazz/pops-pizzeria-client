@@ -26,8 +26,6 @@ function CartProvider({ children }) {
     localStorage.getItem('specialSelected') || ''
   );
 
-  console.log("cartItems:", cartItems)
-
   const [menuData, setMenuData] = useState([]);
   const [specialsData, setSpecialsData] = useState([]);
   const combinedData = [...menuData, ...specialsData];

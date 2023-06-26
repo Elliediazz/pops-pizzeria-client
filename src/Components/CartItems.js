@@ -12,8 +12,6 @@ function CartItems(props) {
   const selectedOptions = cart.getSelectedOptions(_id);
 
   const [itemData, setItemData] = useState();
-  
-  //console.log(itemData)
 
   useEffect(() => {
     async function fetchItemData() {

@@ -15,9 +15,6 @@ function SpecialsMenu() {
   const cart = useContext(CartContext);
   const { specialSelected } = cart;
 
-  console.log({ specialSelected })
-  console.log(selectedOptions)
-
   useEffect(() => {
     async function fetchSpecials() {
       try {
@@ -39,19 +36,15 @@ function SpecialsMenu() {
   }, []);
 
   const handleOptionChange = (specialId, optionName, selectedValue) => {
-    console.log("specialId:", specialId);
-console.log("optionName:", optionName);
-console.log("selectedValue:", selectedValue);
 
-setSelectedOptions((prevSelectedOptions) => {
-  const updatedOptions = {
-    ...prevSelectedOptions,
-    [specialId]: {
-      ...prevSelectedOptions[specialId],
-      [optionName]: selectedValue,
-    },
-  };
-  console.log("prevSelectedOptions:", prevSelectedOptions);
+    setSelectedOptions((prevSelectedOptions) => {
+      const updatedOptions = {
+        ...prevSelectedOptions,
+        [specialId]: {
+          ...prevSelectedOptions[specialId],
+          [optionName]: selectedValue,
+        },
+      };
   
       // Remove the option if the value is empty
       if (!selectedValue) {
