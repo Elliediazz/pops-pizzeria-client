@@ -35,8 +35,8 @@ function CartProvider({ children }) {
     const fetchData = async () => {
       try {
         const [menuResponse, specialsResponse] = await Promise.all([
-          axios.get(process.env.REACT_APP_BACKEND_URL + 'menu/all'),
-          axios.get(process.env.REACT_APP_BACKEND_URL + 'specials/all')
+          axios.get(process.env.REACT_APP_BACKEND_URL + '/menu/all'),
+          axios.get(process.env.REACT_APP_BACKEND_URL + '/specials/all')
         ]);
   
         if (menuResponse.status !== 200 || specialsResponse.status !== 200) {
@@ -180,8 +180,8 @@ function CartProvider({ children }) {
       if (item) {
         return item;
       } else {
-        const menuResponse = await axios.get(`${process.env.REACT_APP_BACKEND_URL}menu/${_id}`);
-        const specialsResponse = await axios.get(`${process.env.REACT_APP_BACKEND_URL}specials/${_id}`);
+        const menuResponse = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/menu/${_id}`);
+        const specialsResponse = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/specials/${_id}`);
   
         if (menuResponse.status === 200) {
           return menuResponse.data;

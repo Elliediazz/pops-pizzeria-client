@@ -16,7 +16,7 @@ function Menu() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get(process.env.REACT_APP_BACKEND_URL + 'menu/all');
+        const response = await axios.get(process.env.REACT_APP_BACKEND_URL + '/menu/all');
         if (response.status !== 200) {
           throw new Error("Failed to fetch menu");
         }

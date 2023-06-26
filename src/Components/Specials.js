@@ -18,7 +18,7 @@ function SpecialsMenu() {
   useEffect(() => {
     async function fetchSpecials() {
       try {
-        const response = await axios.get(process.env.REACT_APP_BACKEND_URL + "specials/all");
+        const response = await axios.get(process.env.REACT_APP_BACKEND_URL + "/specials/all");
         if (response.status !== 200) {
           throw new Error("Failed to fetch specials");
         }
