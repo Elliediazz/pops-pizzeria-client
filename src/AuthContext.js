@@ -74,7 +74,7 @@ const AuthProvider = (props) => {
       const token = localStorage.getItem("token");
       if (token) {
         try {
-          await axios.get(process.env.REACT_APP_BACKEND_URL + 'users/profile', {
+          await axios.get(process.env.REACT_APP_BACKEND_URL + '/users/profile', {
             headers: {
               Authorization: `Bearer ${token}`,
             },
