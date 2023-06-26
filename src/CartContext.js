@@ -12,7 +12,8 @@ export const CartContext = createContext({
   getTotalCost: () => {},
   getCartItems: () => {},
   getItemData: () => {},
-  specialSelected: ""
+  specialSelected: "",
+  getSelectedOptions: () => {},
 });
 
 function CartProvider({ children }) {
@@ -24,7 +25,8 @@ function CartProvider({ children }) {
   const [specialSelected, setSpecialSelected] = useState(
     localStorage.getItem('specialSelected') || ''
   );
-  //console.log("cartSpecial:", specialSelected)
+
+  console.log("cartItems:", cartItems)
 
   const [menuData, setMenuData] = useState([]);
   const [specialsData, setSpecialsData] = useState([]);
@@ -82,7 +84,7 @@ function CartProvider({ children }) {
     
     // Find the item in the combinedData array using the _id
     const item = combinedData.find((item) => item._id === _id);
-
+  
     if (quantity === 0 && item) {
       setCartItems((prevCartItems) => [
         ...prevCartItems,
@@ -91,10 +93,10 @@ function CartProvider({ children }) {
           name: item.name,
           quantity: 1,
           price: item.price,
-          image: item.img
+          image: item.img,         
         },
       ]);
-
+  
       if (specialsData.some((special) => special._id === _id)) {
         setSpecialSelected(_id);
       }
@@ -106,6 +108,11 @@ function CartProvider({ children }) {
       );
     }
   }
+  
+  function getSelectedOptions(_id) {
+    const item = cartItems.find((item) => item._id === _id);
+    return item ? item.options : [];
+  }  
 
   function removeOneFromCart(_id) {
     const quantity = getItemQuantity(_id);
@@ -204,6 +211,7 @@ function CartProvider({ children }) {
     getCartItems,
     getItemData,
     specialSelected,
+    getSelectedOptions,
   };
 
   return (

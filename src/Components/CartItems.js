@@ -8,8 +8,12 @@ import menuimg from './Assets/vodkapasta.jpg';
 
 function CartItems(props) {
   const cart = useContext(CartContext);
-  const { _id, quantity, selectedOptions } = props;
+  const { _id, quantity } = props;
+  const selectedOptions = cart.getSelectedOptions(_id);
+
   const [itemData, setItemData] = useState();
+  
+  //console.log(itemData)
 
   useEffect(() => {
     async function fetchItemData() {
@@ -40,7 +44,27 @@ function CartItems(props) {
       <Col sm={3} className="align-items-center">
         <div>
           <h3>{itemData.name}</h3>
-          <h3>{selectedOptions}</h3>
+          {itemData.options && itemData.options.length > 0 && (
+            <>
+              {selectedOptions && Object.entries(selectedOptions).length > 0 ? (
+                <ul>
+                  {Object.entries(selectedOptions).map(([key, value], index, arr) => {
+                    if (index === arr.length - 1 && typeof value === 'object') {
+                      const optionValue = value['Choice of:'];
+                      return (
+                        <li key={key}>
+                          {optionValue}
+                        </li>
+                      );
+                    }
+                    return null;
+                  })}
+                </ul>
+              ) : (
+                <p>No options selected</p>
+              )}
+            </>
+          )}
           <Button size="sm" variant='danger' onClick={() => cart.deleteFromCart(_id)}>Remove</Button>
         </div>
       </Col>
@@ -59,9 +83,7 @@ function CartItems(props) {
       </Col>
     </Form> 
   </div>
-
   );
-  
 }
 
 export default CartItems;

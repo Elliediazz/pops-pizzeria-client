@@ -16,7 +16,7 @@ function ShoppingCart() {
   const cart = useContext(CartContext);
   const itemsCount = cart.items.reduce((sum, item) => sum + item.quantity, 0);
   const [note, setNote] = useState('');
-
+  
   const handleNoteChange = (event) => {
     const sanitizedNote = sanitizeInput(event.target.value);
     setNote(sanitizedNote);
