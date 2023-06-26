@@ -18,17 +18,6 @@ function NavBar() {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  
-  // const userString = localStorage.getItem("user");
-  // if (userString) {
-  //   const user = JSON.parse(userString);
-  //   console.log(user.name); // Accessing the "name" property
-  //   console.log(user.email); // Accessing the "email" property
-  // }
-
-  // console.log(state.isAuthenticated)
-  // console.log(localStorage.getItem('token'))
-  // console.log(localStorage.getItem('user'))
 
   const itemsCount = cart.items.reduce((sum, item) => sum + item.quantity, 0);
 
