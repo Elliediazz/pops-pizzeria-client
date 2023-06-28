@@ -30,8 +30,6 @@ function CartProvider({ children }) {
   const [specialsData, setSpecialsData] = useState([]);
   const combinedData = [...menuData, ...specialsData];
 
-console.log(cartItems)
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -180,7 +178,6 @@ console.log(cartItems)
       const item = combinedData.find((item) => item._id === _id);
   
       if (item) {
-        console.log(item);
         return item;
       } else {
         const menuResponse = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/menu/${_id}`);

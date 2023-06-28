@@ -11,7 +11,6 @@ function SpecialsMenu() {
   const [specials, setSpecials] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedOptions, setSelectedOptions] = useState({});
-  console.log(selectedOptions)
 
   const cart = useContext(CartContext);
   const { specialSelected } = cart;
