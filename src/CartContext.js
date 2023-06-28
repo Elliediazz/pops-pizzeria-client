@@ -30,6 +30,7 @@ function CartProvider({ children }) {
   const [specialsData, setSpecialsData] = useState([]);
   const combinedData = [...menuData, ...specialsData];
 
+console.log(cartItems)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -77,9 +78,9 @@ function CartProvider({ children }) {
     return quantity;
   }
 
-  function addOneToCart(_id) {
+  function addOneToCart(_id, selectedOptions) {
     const quantity = getItemQuantity(_id);
-    
+  
     // Find the item in the combinedData array using the _id
     const item = combinedData.find((item) => item._id === _id);
   
@@ -91,7 +92,8 @@ function CartProvider({ children }) {
           name: item.name,
           quantity: 1,
           price: item.price,
-          image: item.img,         
+          image: item.img,
+          selectedOptions: selectedOptions,
         },
       ]);
   
@@ -105,12 +107,12 @@ function CartProvider({ children }) {
         )
       );
     }
-  }
-  
-  function getSelectedOptions(_id) {
-    const item = cartItems.find((item) => item._id === _id);
-    return item ? item.options : [];
   }  
+  
+  const getSelectedOptions = (itemId) => {
+    const cartItem = cartItems.find((item) => item._id === itemId);
+    return cartItem ? cartItem.selectedOptions : {};
+  }; 
 
   function removeOneFromCart(_id) {
     const quantity = getItemQuantity(_id);
@@ -178,26 +180,35 @@ function CartProvider({ children }) {
       const item = combinedData.find((item) => item._id === _id);
   
       if (item) {
+        console.log(item);
         return item;
       } else {
         const menuResponse = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/menu/${_id}`);
-        const specialsResponse = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/specials/${_id}`);
   
         if (menuResponse.status === 200) {
           return menuResponse.data;
-        } else if (specialsResponse.status === 200) {
-          return specialsResponse.data;
+        } else if (menuResponse.status === 404) {
+          const specialsResponse = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/specials/${_id}`);
+  
+          if (specialsResponse.status === 200) {
+            return specialsResponse.data;
+          } else {
+            throw new Error(`Failed to get specials data for ID ${_id}`);
+          }
         } else {
-          throw new Error(`Failed to fetch item data for ID ${_id}`);
+          throw new Error(`Failed to get menu data for ID ${_id}`);
         }
       }
     } catch (error) {
+      console.log(error);
       toast.error(`Failed to fetch item data for ID ${_id}`, {
         position: toast.POSITION.TOP_CENTER,
       });
       return null;
     }
-  }  
+  }
+  
+    
 
   const contextValue = {
     items: cartItems,

@@ -19,11 +19,12 @@ const reducer = (state, action) => {
       localStorage.setItem("user", JSON.stringify(user));
       localStorage.setItem("token", token);
 
-      for (let i = 0; i < localStorage.length; i++) {
-        const key = localStorage.key(i);
-        const value = localStorage.getItem(key);
-        console.log(`Key: ${key}, Value: ${value}`);
-      }
+      // for (let i = 0; i < localStorage.length; i++) {
+      //   const key = localStorage.key(i);
+      //   const value = localStorage.getItem(key);
+      //   console.log(`Key: ${key}, Value: ${value}`);
+      // }
+      
       return {
         ...state,
         isAuthenticated: true,

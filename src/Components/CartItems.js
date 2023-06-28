@@ -10,6 +10,8 @@ function CartItems(props) {
   const cart = useContext(CartContext);
   const { _id, quantity } = props;
   const selectedOptions = cart.getSelectedOptions(_id);
+  console.log(selectedOptions)
+  console.log(JSON.stringify(selectedOptions));
 
   const [itemData, setItemData] = useState();
 
