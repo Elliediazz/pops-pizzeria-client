@@ -23,7 +23,6 @@ function Menu() {
         const data = response.data;
         setData(data);
       } catch (error) {
-        console.log(error);
         toast.error("Error getting Menu", {
           position: toast.POSITION.TOP_CENTER,
         });

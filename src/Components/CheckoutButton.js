@@ -2,7 +2,8 @@ import axios from 'axios'
 import { Button } from 'react-bootstrap';
 import { useContext } from "react";
 import { AuthContext } from '../AuthContext';
-
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 
 const CheckoutButton = ({ cartItems} ) => {
@@ -22,11 +23,14 @@ const CheckoutButton = ({ cartItems} ) => {
           window.location.href= response.data.url
         }
       }).catch((error) => { 
-          console.log(error.message)
+        toast.error("unable to checkout", {
+          position: toast.POSITION.TOP_CENTER,
+        });
       });
     } else {
-      // Handle the case when the user is not authenticated
-      console.log("not authenticated")
+      toast.error("not authenticated", {
+        position: toast.POSITION.TOP_CENTER,
+      });
     }
   }
 
