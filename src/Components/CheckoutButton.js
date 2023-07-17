@@ -23,14 +23,15 @@ const CheckoutButton = ({ cartItems} ) => {
           window.location.href= response.data.url
         }
       }).catch((error) => { 
-        toast.error("unable to checkout", {
+        toast.error("Unable to Checkout, Please try again.", {
           position: toast.POSITION.TOP_CENTER,
         });
       });
     } else {
-      toast.error("not authenticated", {
+      toast.error("Not Authenticated, Please Login.", {
         position: toast.POSITION.TOP_CENTER,
       });
+      window.location.href = '/login'
     }
   }
 
