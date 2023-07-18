@@ -9,8 +9,9 @@ import menuimg from './Assets/vodkapasta.jpg';
 function CartItems(props) {
   const cart = useContext(CartContext);
   const { _id, quantity } = props;
-  const selectedOptions = cart.getSelectedOptions(_id);
-
+  const selectedOptions = cart.getSelectedOptions(_id)?.split(":")?.pop()?.replace("}}", "").replace(/['"]/g, "");
+  
+  
   const [itemData, setItemData] = useState();
 
   useEffect(() => {
@@ -46,17 +47,9 @@ function CartItems(props) {
             <>
               {selectedOptions && Object.entries(selectedOptions).length > 0 ? (
                 <ul>
-                  {Object.entries(selectedOptions).map(([key, value], index, arr) => {
-                    if (index === arr.length - 1 && typeof value === 'object') {
-                      const optionValue = value['Choice of:'];
-                      return (
-                        <li key={key}>
-                          {optionValue}
-                        </li>
-                      );
-                    }
-                    return null;
-                  })}
+                  <li >
+                    {selectedOptions}
+                  </li>
                 </ul>
               ) : (
                 <p>No options selected</p>

@@ -81,6 +81,8 @@ function CartProvider({ children }) {
   
     // Find the item in the combinedData array using the _id
     const item = combinedData.find((item) => item._id === _id);
+    const selectedOptionsString = JSON.stringify(selectedOptions);
+
   
     if (quantity === 0 && item) {
       setCartItems((prevCartItems) => [
@@ -91,7 +93,7 @@ function CartProvider({ children }) {
           quantity: 1,
           price: item.price,
           image: item.img,
-          selectedOptions: selectedOptions,
+          selectedOptions: selectedOptionsString,
         },
       ]);
   
@@ -111,6 +113,7 @@ function CartProvider({ children }) {
     const cartItem = cartItems.find((item) => item._id === itemId);
     return cartItem ? cartItem.selectedOptions : {};
   }; 
+   
 
   function removeOneFromCart(_id) {
     const quantity = getItemQuantity(_id);
