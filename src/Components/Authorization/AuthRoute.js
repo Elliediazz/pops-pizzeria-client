@@ -7,7 +7,7 @@ const AuthRoute = ({ children }) => {
     if (token) {
       return <Navigate to="/shoppingcart" />;
     }
-  
+    // If the user is not logged in , the component renders the content or nested components passed between the <AuthRoute> tags
     return children;
 };
 

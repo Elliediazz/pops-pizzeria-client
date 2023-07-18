@@ -22,6 +22,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 
 function App() {
+  // eslint-disable-next-line
   const [token, setToken] = useState(localStorage.getItem("token"));
 
   return (
@@ -40,7 +41,7 @@ function App() {
               <Route path="/signup" element={<AuthRoute><Signup setToken={setToken} /></AuthRoute>} />
               <Route path="/login" element={<AuthRoute><Login setToken={setToken} /></AuthRoute>} />
               <Route path="/shoppingcart" element={<ProtectedRoute><ShoppingCart /></ProtectedRoute>} />
-              <Route path="/success" element={<Success />} />
+              <Route path="/success" element={<AuthRoute><Success /></AuthRoute>} />
               <Route path="/error" element={<Error />} />
               <Route path="*" element={<Navigate to="/error" />} />
             </Routes>
