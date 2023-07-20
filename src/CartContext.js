@@ -81,7 +81,7 @@ function CartProvider({ children }) {
   
     // Find the item in the combinedData array using the _id
     const item = combinedData.find((item) => item._id === _id);
-    const selectedOptionsString = JSON.stringify(selectedOptions);
+    const selectedOptionsString = JSON.stringify(selectedOptions)?.split(":")?.pop()?.replace("}}", "").replace(/['"]/g, "");
 
   
     if (quantity === 0 && item) {

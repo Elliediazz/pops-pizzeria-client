@@ -9,7 +9,7 @@ import menuimg from './Assets/vodkapasta.jpg';
 function CartItems(props) {
   const cart = useContext(CartContext);
   const { _id, quantity } = props;
-  const selectedOptions = cart.getSelectedOptions(_id)?.split(":")?.pop()?.replace("}}", "").replace(/['"]/g, "");
+  const selectedOptions = cart.getSelectedOptions(_id)
   
   
   const [itemData, setItemData] = useState();
