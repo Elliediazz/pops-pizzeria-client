@@ -38,7 +38,11 @@ function CartItems(props) {
   <div>
     <Form as={Col} className="justify-content-center items-form" style={{ height: '200px' }}>
       <Col sm={3} className="cart-img-div" >
-        <img className="cart-img" src={menuimg} alt={itemData.name} />
+        <img
+          className="cart-img"
+          src={itemData.img ? itemData.img : menuimg}
+          alt={itemData.name}
+        />
       </Col>
       <Col sm={3} className="align-items-center">
         <div>

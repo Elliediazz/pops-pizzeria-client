@@ -49,7 +49,6 @@ function Menu() {
             <Col key={index} md={5} className="menu-card-col">
               <Card className="menu-card">
                 <div className="menu-card-img">
-                  {/* <img src={menuimg} alt={menu.name} /> */}
                   <img
                     src={menu.img ? menu.img : menuimg}
                     alt={menu.name}

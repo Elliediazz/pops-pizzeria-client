@@ -30,8 +30,11 @@ function ModalCartItems (props) {
   return (
     <div className='modal-cart-items'>
       <div>
-        {/* <img src={itemData.img}></img> */}
-        <img className="modal-cart-img" src={menuimg} alt={itemData.name} />
+        <img
+          className="modal-cart-img"
+          src={itemData.img ? itemData.img : menuimg}
+          alt={itemData.name}
+        />
       </div>
       <Form as={Row} className="justify-content-center modal-form" >                  
         <Form.Label column="true" sm="6" className="modal-lable"><h3>{itemData.name}</h3></Form.Label>

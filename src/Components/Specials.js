@@ -5,7 +5,7 @@ import { CartContext } from "../CartContext";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import menuimg from "./Assets/pepperoni.jpg";
+import specialimg from "./Assets/pepperoni.jpg";
 
 function SpecialsMenu() {
   const [specials, setSpecials] = useState([]);
@@ -120,7 +120,10 @@ function SpecialsMenu() {
               <Col key={special._id}>
                 <Card className={`menu-card ${isAvailable ? "" : "unavailable"}`}>
                   <div className="menu-card-img">
-                    <img src={menuimg} alt={special.name} />
+                    <img
+                    src={special.img ? special.img : specialimg}
+                    alt={special.name}
+                  />
                   </div>
                   <Card.Body>
                     <div className="title">
